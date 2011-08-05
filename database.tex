@@ -1,0 +1,30 @@
+\chapter{Bespreking van het database ontwerp}
+\label{hoofdstuk:database}
+
+\section{Vereisten}
+Gebruikers moeten een externe database server kunnen aanspreken om zo te werken op de meest actuele data. Het moet ook steeds mogelijk zijn om op een eigen kopie van de data te werken
+
+\section{Externe database traag, interne database snel}
+Het grote probleem dat duidelijk werd na het rechtstreeks werken met externe databases, is dat zelfs op een lokaal netwerk de verzoeken een zeer grote vertraging opleverden.\\
+
+De redenen hiervoor waren natuurlijk de vele queries die elk object kan versturen om zijn attributen op te halen of te veranderen.\\
+
+Nog een groot voordeel bij het maken van dergelijk systeem is dat er gebruik kan gemaakt worden van niet-desctructieve veranderingen. Op het einde van een werksessie kan men de volledige
+lokale database ofwel in de hoofd database invoegen ofwel gewoon verwijderen.\\
+
+Het design moest transparant zijn, zowel een rechstreekse connectie als een gebufferde connectie zouden voor de eindgebruiker en de ontwikkelaar aan de buitenkant hetzelfde lijken.\\
+
+Idee: Vervang object ID met object hash voor snellere match-to-match identificatie zonder een globala id nodig te hebben
+
+\section{Slimme client of slimme server?}
+Het programma bevat alle nodige functionaliteit en de server is in dat opzicht gewoon de specifieke database waarnaar het een verwijzing heeft.
+
+Voor het gebruik op kleine apparaten (zoals tablets) zijn de mogelijkheden voor computationeel zware activiteiten niet zo uitgebreid. Daarenboven moet ervoor gezorgd worden dat de batterijduur
+van dit apparaat niet te hard beknot wordt door het gebruik van de applicatie. Daarom zal de transitie naar zeer mobiele platformen enkel mogelijk worden indien er een simpele client applicatie kan
+ontwikkeld worden die op de server vertrouwd om de juiste berekeningen te maken.\\
+
+In de thesisperiode is geen tijd gevonden om dit concept uit te werken maar er zijn wel plannen gemaakt waardoor dergelijke
+applicatie op een effici\"ente manier zou kunnen ontwikkeld worden. De gebruikersinterface Tangerine voert alle functies met betrekking tot de achterliggende data uit met behulp van een grote bibliotheek
+van klassen die op zich niets met de interface te maken hebben. Er zou dus een alternatief programma gebouwd kunnen worden die in plaats van met een grafische interface kan bediend worden
+via een zelfgemaakt protocol. Dit soort ontwerp wordt vaak aangetroffen in de UNIX wereld, waar er een enkele server-variant van een programma bestaat en meerdere mogelijke clients die ervan gebruik maken.
+Het bekendste is misschien wel de X server.

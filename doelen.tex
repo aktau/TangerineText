@@ -1,0 +1,42 @@
+\chapter{Doelen van het project}
+\label{hoofdstuk:doelen}
+
+Het hoofddoel van het hele thera project is om het hele proces van fresco's reconstrueren zo gemakkelijk mogelijk te maken. Daarom moeten ook de doelen van dit thesisproject zoveel mogelijk in functie van dit
+hoofddoel gekozen worden.
+
+Gezien de huidige stand van zaken besproken in hoofstuk \ref{hoofdstuk:overzicht}, wordt daarop verdergebouwd om gebruikers in staat te stellen gemakkelijk samen te werken aan eenzelfde fragmentencollectie. Ideaal gezien zouden
+archeologen dit op elk gegeven moment vanop elke plaats in de wereld moeten kunnen doen. Een mogelijk scenario hierbij is dat een archeoloog in de Verenigde Staten de virtuele collectie kan bezien en classificeren.
+Deze veranderingen moeten dan gemakkelijk te laten zien zijn aan een archeoloog of assisten die toegang heeft tot de feitelijke brokstukken, zodat die kan nakijken of de paren die de archeoloog in de V.S. heeft
+ge\"identificeerd correct waren.
+
+\section{Collaboratie}
+Het belangrijkste implementatie-aspect van de thesis. Alle andere aspecten staan normaalgezien in dienst van het vergemakkelijken van de collaboratie (indien niet staan ze wel in dienst van het hoofddoel van het thera project). 
+
+\section{Gebruiksvriendelijkheid}
+Archeologen zijn dikwijls niet opgeleid om complexe applicaties zonder meer te gebruiken. Om deze reden moet er moeite gestoken worden in het ontwerp van een visueel aangename en intuitieve gebruikservaring. Om deze reden
+wordt in het programma steeds de aandacht gevestigd op hetgeen het belangrijkst is: de fragmenten en de paren. Elke mogelijke operatie moet zo goed mogelijk zichtbaar gemaakt (liefst geen instellingendialoog bnb.). Ook moet
+er steeds uitleg voorzien worden van wat een bepaalde operatie werkelijk doet.
+
+// hoort mss bij [DESIGN]
+De gebruikersinterface van de oude programma's was goed en kon effici\"ent gebruikt worden mits enige training. Maar voor het ondersteunen van collaboratief werken moeten er natuurlijk allerhande nieuwe operaties toegevoegd
+worden. Tijdens het implementatieproces werd het duidelijk dat de reeds bestaande code van het Browsematches niet uitbreidbaar genoeg was en die van Griphos te complex en belangrijk. Daardoor werd de beslissing genomen om de
+basisinterface van Browsematches over te nemen maar alle onderliggende code te herschrijven zodat die uitbreidbaar zou zijn. Bij het opnieuw construeren van dit alles zijn er een aantal verbeteringen gebeurd die niet meteen te maken hebben met het collaboratie aspect maar wel met de workflow van het classificeren. Dit werd gedaan om het hele programma gebruiksvriendelijker en krachtiger te maken in functie van het hoofddoel van het project.
+
+\section{Snelheid}
+Volgens vele studies op het gebied van gebruikersinterfaces [refereer een goed boek] geraken gebruikers gefrustreerd vanaf een operatie een zeker tijd duurt. Dit hangt een af van de aard van de operatie (het resultaat), de frequentie waarmee die uitgevoerd wordt, of er visuele tekenen van voortgang zijn en of er tijdens het wachten (steeds) iets anders kan uitgevoerd worden. Om deze reden is het van het grootste belang dit aspect in acht te nemen
+bij het ontwikkelen van de applicatie. Een programma kan nog zo goed zijn, een gebruiker die sloomheid ervaart zal het niet vaak gebruiken.
+
+\section{Uitbreidbaarheid}
+Bij het ontwikkelen van een platform voor een kennis- en ervaringsintensief domein als de archeologie waarvoor weinig precedenten bestaan, is het reeds van in het begin duidelijk dat het zal moeten vervangen worden als het niet met uitbreidbaarheid in gedachte ontworpen wordt. \\
+
+(eerder bij design) Ontkoppeling data en visualisatie, beide orthogonaal uitbreidbaar.
+
+\subsection{Data}
+ Een voorbeeld: een onderzoeker vindt een nieuw algoritme om fragmentparen te rangschikken. Deze rangschikking moet naadloos in het platform kunnen ge\"integreerd worden zodat de gebruikers hier op kunnen zoeken (sorteren, filteren). Stel een archeoloog acht het nuttig om van een paar te kunnen opvragen wat het dikteverschil is tussen de twee fragmenten. Dit moet eveneens met een minimum aan moeite in het platform geïntegreerd kunnen worden. Voor zulke toevoegingen is het ook preferibel dat de visuele kant van het platform (de applicatie) zelf niet vervangen moet worden. \\
+ 
+ Data die complexer is en mogelijk speciale handelingen vereist om in een voorstelbare vorm te krijgen zal echter wel vergezeld moeten worden van een speciale visualisatiemodule om gebruikt te worden. Een vereiste hiervoor is wel dat de aanwezigheid van deze data de rest van de applicatie op geen enkele manier be\"invloed. Op die manier kunnen gebruikers met weinig modules zonder problemen gelijktijdig bewerkingen uitvoeren met gebruikers die er meer hebben (op dezelfde data).
+ 
+\subsection{Visualisatie}
+Er zijn vele manieren van visualisatie denkbaar die elkaar kunnen aanvullen bij het volbrengen van het zoek- en classificeerprocess. Zo stelt men zich bij de uitdrukking ``fresco's samenstellen" waarschijnlijk een grote puzzel voor waar je ten alle tijde het overzicht kan behouden en stukken proberen te passen. Deze puzzel visualisatie is visueel aantrekkelijk en biedt het menselijke patroonherkenningsvermogen\footnote{Iets waar computers de mens nog altijd niet in hebben ge\"evenaard. Een ander Thera subproject onderzoekt wel de mogelijkheid om zogenaamde 'clusters' te identificeren en te gebruiken voor reconstructie. [CITATIE]} de mogelijkheid om zich van zijn beste kant te laten zien. Echter, door de grote hoeveelheid aan fragmenten en dus mogelijke paren is het zeer moeilijk om hier aan te beginnnen. Wanneer er reeds een deel geconfirmeerde paren zijn, zouden deze bijvoorbeeld op de puzzel kunnen verschijnen om zo een globaal overzicht te krijgen van de voortgang van het proces en om gerichter te zoeken naar stukken. Dit is een macro-perspectief en een top-down manier om te reconstrueren.\\
+
+Even naar het stuk waar de computer w\'el goed in is: fragmenten aan elkaar passen en rangschikken naar kans/overeenkomst/et cetera. Door een gemakkelijk navigeerbare lijst op te stellen van alle voorstellen die de reconstructie algoritmes hebben gedaan, kunnen er snel op elkaar passende fragmenten ge\"identificeerd worden. Dit is een micro-perspectief en een bottom-up manier om fresco's te reconstrueren. De puzzel visualisatie heeft na deze stap reeds een paar beginpunten om te tonen en is nu veel informatiever. Als er bijvoorbeeld duidelijke "gaten" ontstaan in een resem goede fragmentparen kan er gericht gezocht worden naar een fragment dat erin past (indien het gevonden werd bij de opgraving).

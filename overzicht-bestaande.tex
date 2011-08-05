@@ -1,0 +1,34 @@
+\chapter{Overzicht van het thera project}
+\label{hoofdstuk:overzicht}
+Zoals eerder gezegd bouwt deze thesis verder op een reeds bestaand project. Om de thesis beter te kunnen situeren in het geheel is het handig om eerst even het thera project bekijken
+en dan te zien waar dit project in past.
+
+\section{Het thera project}
+Ruwweg gezien kan het reconstrueren van een fresco met behulp van de computer opgedeeld worden in 3~fasen.
+
+\begin{description}
+	\item[Acquisitie] Alle gevonden fragmenten worden ingescand met behulp van 3D en 2D-scanapparatuur om zo een virtueel model van elk stuk te bouwen, zie \cite{Brown2008}.  
+	\item[Identificatie] Vervolgens worden deze virtuele fragmenten aan een zogenaamde \emph{matcher} gegeven, die voor elk fragmentenpaar gaat kijken of ze mogelijk op elkaar passen. Er zijn verschillende types ontwikkeld, waarvan \'e\'en van de meeste succesvolle de zogenaamde \emph{RibbonMatcher} \cite{Brown2008} bleek te zijn. Deze \emph{matcher} kijkt enkel naar de randen van de fragmenten en kan dus zelfs volledig kleurloze fragmentparen identificeren. Maar het onderzoek gaat verder, in 2010 werd er een nieuw type ontwikkeld dat zijn analyse baseert op een combinatie van verschillende eigenschappen, zoals de sporen die een borstel kan nalaten bij het kleuren van een fresco \cite{TolerFranklin2010}.
+	\item[Classificatie] De laatste stap bestaat uit het classificeren van wat de vorige stap produceert. Elk voorgesteld paar moet gecontroleerd worden op validiteit. Verschillende statussen kunnen zo toegekend worden aan
+	een paar, zoals: \emph{geconfirmeerd}, \emph{misschien}, \emph{nee}, \emph{conflict}, et cetera. De \emph{matcher} produceert namelijk zeer veel mogelijk passende paren, waarvan slechts een klein deel correct zal zijn. De drempel voor het beslissen wat een paar kan zijn en wat niet wordt in de \textbf{identificatie}-stap zo laag ingesteld omdat men wil vermijden dat twee fragmenten die toch passen genegeerd worden (de kost van zogenaamde ``\emph{false negatives}'' wordt hoog ingeschat).
+\end{description}
+
+\section{Situatie van de thesis in het project}
+Het thesisproject besproken in deze tekst tracht de reeds bestaande hulpmiddelen van deze derde en laatste stap (\textbf{classificatie}) aan te vullen. Er werden reeds programma's ontwikkeld om de classificatie uit te voeren, namelijk \emph{Griphos} en \emph{Browsematches}. Hierop volgt een korte bespreking van beide programma's, hun voor- en nadelen, en mogelijke uitbreidingen.
+
+\subsection{Griphos}
+
+TODO
+
+[afbeelding van griphos]
+
+\subsection{Browsematches}
+
+TODO
+
+[afbeelding van browsematches]
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "masterproef"
+%%% End: 

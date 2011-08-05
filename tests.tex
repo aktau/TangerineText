@@ -1,0 +1,51 @@
+\chapter{Tests \& Vergelijkingen}
+\label{hoofdstuk:tests}
+Een goede manier om te weten te komen of het project zoals dit nut heeft gehad is om tests uit te voeren. Er zal worden vergeleken tussen de reeds bestaande oplossingen voor het classificeren van fragmentparen en de nieuwe applicatie waar mogelijk. In sommige gevallen zijn er nieuwe zaken toegevoegd die vroeger op geen of slechts manuele wijze mogelijk waren, hier zal worden vergeleken met (evt. fictieve) alternatieve implementaties. Voor het geval er helemaal geen vergelijking tussen alternatieven mogelijk is, zal een zo goed mogelijke maatstaf bedacht worden zodat er toch een beeld ontstaat van hoe de applicatie het doet.
+
+\section{Use cases}
+Elke gebruiker wenst met een applicatie een bepaald doel te bereiken, in dit geval is dat het classificeren van fragmentparen. Hiervoor zullen de mogelijkheden die het programma aanbiedt hopelijk zowel voldoende als gemakkelijk in gebruik zijn.
+
+\subsection{Vind uit bak ONGESORTEERD het paar dat het meeste ruimte inneemt}
+\subsection{Vind alle mogelijke paren die conflicteren met een waarschijnlijk paar}
+\subsection{Vind alle mogelijke paren die grenzen aan het geselecteerde paar maar niet conflicteren ermee}
+\subsection{Voeg een andere database bij de huidige, prefereer de veranderingen van de andere als er conflicten zijn}
+\subsection{Gebruik conflict detectie \& 3D voorstelling om correcte paren te identificeren}
+\subsection{Duid aan dat een verzameling mogelijke paren eigenlijk hetzelfde paar zijn (duplicaten)}
+\subsection{Bekijk alle duplicaten van een paar}
+\subsection{Vind alle paren die geclassificeerd staan als 'misschien'/'maybe', schrijf bij een paar je mening ('comment')}
+\subsection{Exporteer een database naar een leesbaar formaat (XML)}
+\subsection{Importeer een database van een leesbaar formaat (XML)}
+\subsection{Kopiëer een aantal paren naar Griphos}
+\subsection{Selecteer een aantal paren om te groeperen en in 3D weer te geven}
+
+\subsection{Vindt wat je weet zijn: gebruik de zoek- en sorteerfuncties om snel een gewenst deel van de verzameling paren te zien}
+\subsection{Vindt wat je niet weet zijn: gebruik de zoek- en sorteerfuncties om snel veelbelovende paren te vinden}
+\subsection{Werken op een externe database (gebruiksgemak)}
+\subsection{Databases samenstellen: conflicten oplossen}
+
+\section{Snelheid (objectieve tests)}
+\subsection{Opstartsnelheid}
+
+\subsection{Inladen van fragmenten}
+Meet het inladen van fragmenten, verschil tussen browsematches en tangerine (intern en extern)
+
+\subsection{Navigeren tussen schermen}
+Meet het navigeren tussen schermen, sorteren, filteren
+
+\subsubsection{Teruggaan naar eerder schermen}
+Door een caching mechanisme...
+
+\section{Gebruiksgemak (subjectieve tests)}
+Subjectieve waardeschattingen van gebruikers
+
+\subsection{Intuitiviteit}
+Het doelpubliek van de applicatie bestaat in de nabije toekomst uit archeologen en eventueel later uit amateurs die helpen met de classificatie. Qua gebruikersprofiel passen archeologen in het plaatje van een gebruiker met veel domeinkennis (classificeren), maar weinig kennis of ervaring met het gebruik van geavanceerde computerapplicaties. Anders gezegd: de gebruikers weten wat ze willen en moeten doen, maar niet noodzakelijk hoe ze het moeten doen in de applicatie.\\
+
+Voor elk programma kan training voorzien worden zodat er uiteindelijk optimaal gebruik van kan gemaakt worden, maar het doel is om deze training tot een minimum te beperken. Dit houdt in dat de functies ontdekbaar\\
+
+Informatie-popups (eenmalig/meermalig)
+
+\subsection{Responsiviteit}
+Voor het dagdagelijkse gebruik van een applicatie is het van groot belang dat de gebruiker het niet hinderlijk vindt om ermee te werken. In enkele werken over gebruikersinterface ontwerp [aan elkaar?] [citatie] wordt erop gewezen dat de snelheid waarmee een applicatie reageert een sleutelfactor is voor het gebruiksgemak. Een algemene vaststelling: de tijd die een operatie mag innemen is omgekeerd evenredig met de frequentie waarmee deze operatie moet uitgevoerd worden. Deze regel in acht nemend is het duidelijk dat bijvoorbeeld het inladen van een scherm, het veranderen van een attribuut, het filteren en sorteren en dergelijke meer acties zijn die met de grootst mogelijke snelheid moeten worden uitgevoerd. \\
+
+Voor al deze operaties is sinds het eerste ontwerp van de applicatie rekening gehouden met de implicaties van elke beslissing op de snelheid. Hierdoor is de snelheid van de applicatie op elke vlak verbeterd tegenover zijn voorgangers, soms op dramatische wijze. Om dit objectief vast te stellen zijn er een paar tests uitgevoerd:

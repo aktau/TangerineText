@@ -1,0 +1,69 @@
+\chapter{Ontwerp van het project}
+\label{hoofdstuk:ontwerp}
+
+In dit hoofdstuk komt het werkelijke ontwerp van de applicatie aan bod. Met de doelen besproken in hoofdstuk \ref{hoofdstuk:doelen} in het achterhoofd.\\ 
+
+Afgezien van de zaken die puur op het collaboratieve aspect van de bestaande software verbeteren, zijn er natuurlijk nog andere zaken veranderd.\\
+
+Browsematches werd vanaf de grond terug opgebouwd om een uitbreidbaar platform te worden dat zich leent tot gemakkelijke uitbreiding en ondersteuning biedt tot het selectief af- en aanzetten van modules.
+(om zo hun stabiliteit en inmpact op het programma te kunnen meten \'en om ze te kunnen vervangen indien nodig zonder de volledige applicatie te moeten herschrijven.)\\
+
+% DATA
+\section{Data, de basis van alles}
+TODO: verhuizen naar ontwerp van database
+
+\subsection{Het oude systeem: XML-bestanden}
+
+E\'en van de belangrijkste stappen op weg naar een collaboratieve applicatie, is het omvormen van\\
+
+Het ontwerp van het database model en de implementatie details zijn groot genoeg om hun eigen hoofdstuk te verdienen, zij worden later in hoofdstuk [...] besproken.\\
+
+\subsection{Ontleding van de data}
+...relationeel van aard => SQL database
+
+\subsubsection{Paren}
+
+\subsubsection{Attributen van paren}
+
+\subsubsection{Complexe informatie die niet in een simpel attribuut past}
+
+\subsection{De vereisten van een database ontwerp}
+Zoals in sectie [doelen] omschreven moet de applicatie in staat zijn om data op een uitbreidbare manier uit te lezen en te veranderen, liefst zonder 
+
+\subsection{Complexe informatie voorstellen als een attribuut}
+Meta-attributen, VIEWs
+
+\subsection{Verschillende iteraties}
+
+\subsection{Databases samenstellen}
+
+\subsubsection{Geschiedenis bijhouden}
+
+% VISUALISATIE
+\section{Visualisatie, een manier om met de data te werken}
+
+\subsection{Model-View-Controller}
+
+\subsection{UML diagramma}
+
+[maak UML diagramma]\\
+
+\subsection{GUI}
+Met behulp van de Qt toolkit [link]...
+
+\section{Integratie in thera project}
+Gebruik van bibliotheken, ...
+Extensie door refactoring: FragmentConf -> IFragmentConf ==> SQLFragmentConf | FragmentConf
+Hierdoor is het nodig om de reeds bestaande code van het thera project om te zetten naar het gebruik van IFragmentConf waar mogelijk maar het aanmaken van FragmentConf anderzijds
+of FragmentConf ==> SQLFragmentConf
+Alternatieve oplossing, geen veranderingen in thera code maar SQLFragmentConf sleept dan veel onnodige ballast mee van FragmentConf
+
+\section{Uitbreidbaarheid}
+Het programma is ontworpen met uitbreidbaarheid in gedachten. Dit heeft niet enkele betrekking op het klassen-ontwerp maar ook op het dynamisch en statisch verwijderen en toevoegen van modules. Het basissysteem
+zonder modules bestaat uit een manier om een fragmenten en paren-database te laden en te kiezen uit welke module op te starten. Het ziet er zo uit: \\
+
+[afbeeldingen invoegen]\\
+
+Een module die ingeladen wordt weet niets over de hoofdapplicatie of andere modules behalve de huidige database. Deze informatie zit vervat in een object dat een model van een aantal paren voorstelt. Dit werd mogelijk gemaakt door een zogenaamde Model-View(-Controller)\footnote{De controller functionaliteit zit in de applicatie verdeeld bij het model en de view} [citatie] aanpak. Een module kan vragen om een applicatie-wijd of een nieuw model te krijgen. Met een applicatie-wijd model kan invloed uitgeoefend worden op andere modules die hetzelfde model gebruiken. Dit is handig bijvoorbeeld als men in \'e\'en module een verzameling paren filtert en selecteert en men een andere module deze selectie wil visualizeren. applicatie-modellen zijn dus bijzonder nuttig voor visualizatie plugins. Om de werkbaarheid van het systeem uit te testen werd een voorbeeldmodule ontwikkeld die alle huidige paren in een grafe plaatst en deze met een ontwarringsalgoritme probeert te plaatsen, zodat men een globaler beeld kan krijgen van de huidige selectie.\\
+
+[afbeelding invoegen, selectie naar grafe transit!]\\
