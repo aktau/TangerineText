@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>TangerineThesis</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>net.sourceforge.texlipse.builder.TexlipseBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>net.sourceforge.texlipse.builder.TexlipseNature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>referenties.bib</name>
+			<type>1</type>
+			<location>D:/Thesis/text/referenties.bib</location>
+		</link>
+	</linkedResources>
+	<filteredResources>
+		<filter>
+			<id>1312534159728</id>
+			<name></name>
+			<type>21</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-*.tex</arguments>
+			</matcher>
+		</filter>
+		<filter>
+			<id>1312534159739</id>
+			<name></name>
+			<type>21</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-*.pdf</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
+</projectDescription>
