@@ -4,6 +4,13 @@
 \section{Vereisten}
 Gebruikers moeten een externe database server kunnen aanspreken om zo te werken op de meest actuele data. Het moet ook steeds mogelijk zijn om op een eigen kopie van de data te werken
 
+\section{Alternatieven}
+NoSQL (Cassandra, \ldots)
+SQL
+XML database (oud)
+
+Redenering!
+
 \section{Externe database traag, interne database snel}
 Het grote probleem dat duidelijk werd na het rechtstreeks werken met externe databases, is dat zelfs op een lokaal netwerk de verzoeken een zeer grote vertraging opleverden.\\
 
@@ -28,3 +35,71 @@ applicatie op een effici\"ente manier zou kunnen ontwikkeld worden. De gebruiker
 van klassen die op zich niets met de interface te maken hebben. Er zou dus een alternatief programma gebouwd kunnen worden die in plaats van met een grafische interface kan bediend worden
 via een zelfgemaakt protocol. Dit soort ontwerp wordt vaak aangetroffen in de UNIX wereld, waar er een enkele server-variant van een programma bestaat en meerdere mogelijke clients die ervan gebruik maken.
 Het bekendste is misschien wel de X server.
+
+Materialized views!!!
+
+Model change batching!!! (startBatch/endBatch)
+
+Incompatibiliteiten tussen *SQL
+
+Analyse van datatoegangspatroon: vooral SELECT, ORDER BY, GROUP BY ---->
+veelvuldig gebruik van indexes
+
+Metadata preloading (na het testen van de snelheid van het ophalen van metadata
+over een internetconnectie, werd besloten om\ldots)
+
+De gevaren van een stale cache! (en ook de gevaren van een stale window, ook
+een soort cache)). Oplossing altijd een request sturen om te dubbelchecken?!
+---> te traag
+
+optimize voor fast reads -----> inserts kunnen lokaal gedaan worden, updates hopelijk niet zo veel of lokaal
+
+Recheck om de X seconden: doenbaar indien materialized views met indices!
+(eigenlijke window query < 1 msec). Systeem zou 1000'en gebruikers kunnen
+ondersteunen, zeker met een grotere cache
+
+Cache = write-through
+
+Vele discplines van de computerwetenschappen
+
+% http://en.wikipedia.org/wiki/Three-way_merge#Three-way_merge <--- (bij design\ldots)
+
+dynamisch zoekopdrachten genereren
+
+SQLite formaat maakt database gemakkelijk te delen (USB-stick) <-- geen internet
+connectie
+
+Detecteren van imcompatibiliteiten EN veranderingen met reguliere
+expressies:
+
+Aanpaken voor syncrhonizatie:
+moeilijk: changelogging functionaliteit, triggers, \ldots (mogelijk maar
+moeilijk cross-db en error-prone)
+``gemakkelijk'': Maak gewone queries zeer goedkoop
+
+Vereisten: Scaleerbaarheid (XML schaalt NIET)
+Voordeel van XML is echt wel dat het een mooi outputformaat is voor
+matchers\ldots import capaciteit voorzien ==> import naar temp SQLite db en
+merge
+
+Ondersteuning voor ``meerdere snelheden'', minder modules hebben is niet erg,
+elke additie is uitbreiding. Zo ook minder/geen versie van db-schema problemen
+
+dependency scanning!
+
+\section{Benchmarking}
+De query cache staat af
+Om de variabiliteit van de filesystem (nederlands) cache een beetje buiten spel te zetten zijn al deze routines ``opgewarmd''
+
+Effect van DB configuratie (veel geheugen\ldots)
+
+Suggested workaround voor het text probleem -> sphinx, restrict fragment names (niet ZO gemakkelijk), string + nummer
+Suggested workaround voor het indexing probleem (zoals gezien voor status IN (\ldots)) -> force een index?! dunno\ldots hij pakt in ieder geval de verkeerde!
+
+‘High Performance MySQL’, Second Edition, O’REILLY, ISBN: 978-0-596-10171-8
+MySQL Reference Manual for version 5.1
+
+http://nlp.stanford.edu/IR-book/html/htmledition/permuterm-indexes-1.html (dit is hoe wildspeed werkt) (LIKE performance lijkt niet zo slecht in Postgres, het is de sorting eerder\ldots)
+http://www.slideshare.net/techdude/how-to-kill-mysql-performance
+http://stackoverflow.com/questions/1540590/how-to-speed-up-like-operation-in-sql-postgres-preferably <--- use trigrams (fail)
+https://cgsrv1.arrc.csiro.au/blog/2010/06/23/materializedindexed-views-for-postgresql/

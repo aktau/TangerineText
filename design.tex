@@ -1,16 +1,43 @@
 \chapter{Ontwerp van het project}
 \label{hoofdstuk:ontwerp}
 
-In dit hoofdstuk komt het werkelijke ontwerp van de applicatie aan bod. Met de doelen besproken in hoofdstuk \ref{hoofdstuk:doelen} in het achterhoofd.\\ 
+Eenmaal de belangrijkste vereisten gekend zijn kan er een ontwerp opgetekend worden. Daarom even de grote lijnen die te concluderen vallen uit hoofdstuk \ref{hoofdstuk:doelen}:
 
-Afgezien van de zaken die puur op het collaboratieve aspect van de bestaande software verbeteren, zijn er natuurlijk nog andere zaken veranderd.\\
+\begin{itemize}
+  \item De data en het visuele aspect van de applicatie moeten zo ontkoppeld mogelijk zijn, elk moet apart uitbreidbaar zijn
+  \item Zeer grote hoeveelheden data moeten vlot kunnen behandeld worden
+  \item De data moet zowel centraal als decentraal toegankelijk zijn en synchronisatie toestaan
+  \item Gebruiksvriendelijkheid en snelheid zijn belangrijk
+  \item Compatibiliteit met de reeds geschreven onderdelen van het project moet indien mogelijk bewaard blijven
+\end{itemize}
 
-Browsematches werd vanaf de grond terug opgebouwd om een uitbreidbaar platform te worden dat zich leent tot gemakkelijke uitbreiding en ondersteuning biedt tot het selectief af- en aanzetten van modules.
-(om zo hun stabiliteit en inmpact op het programma te kunnen meten \'en om ze te kunnen vervangen indien nodig zonder de volledige applicatie te moeten herschrijven.)\\
+Omdat de data de basis is van alle andere delen, zal deze eerst besproken worden.
+
+[citatie software engineering boek, quiza ook gof]
+
+TODO: sommige van deze stukken zouden misschien beter bij motivatie staan, WAAROM wil je doen wat je doet?
+(MVC)
+
+Een van de meest fundamentele verschillen tussen de centrale filosofie die Griphos vooropstelt en die van dit project is dat terwijl bij Griphos de focus ligt op aparte geplaatste fragmenten, het thesisproject eerder de automatische gevonden paren behandelt. Het is in Griphos wel degelijk mogelijk om voorstellen van de automatische paarherkenning in te laden maar de naald in de hooiberg vinden is moeilijk.\\
+
+Omgekeerd wordt er bij dit thesisproject steeds vertrokken vanuit de automatisch gegenereerde paren. Om deze reden zijn deze paren ook de centrale eenheid van data.\\
+
+Dit alles wil niet zeggen dat beide aanpakken elkaar uitsluiten, integendeel zelfs. De gevalideerde paren die uit het thesisproject komen kunnen rechtstreeks in een groep op een tafelblad geplaatst worden. In de limiet, wanneer alle mogelijke paren correct geclassificeerd zijn vloeit hieruit op natuurlijk wijze een (zo compleet mogelijk) fresco voort. Daarom valt de implementatie in de thesis te zien als een extra tussenstap, chronologisch v\'o\'or het plaatsen van de fragmenten op een tafelblad en na het uitvoeren van de herkenningsalgoritmen. Figuur \ref{fig:flow} stelt dit visueel voor.
+
+
 
 % DATA
-\section{Data, de basis van alles}
-TODO: verhuizen naar ontwerp van database
+\section{Het beheer van de data}
+
+Redenering: Alles vloeit voort uit de paren, het is voorspelbaar (simpel voor te stellen) en ondubbelzinnig
+
+Het zelf kunnen maken van paren is van secundair belang (volgens de thesis), zij kunnen door de HumanMatcher ingevoerd worden in de grote database
+
+Griphos is zeer nuttig -> identificatie locatie van fragmenten in de bak, etc. -> Tangerine is het ontbrekende middendeel!
+
+Dit betekent echter niet dat beide perspectieven elkaar uitsluiten, integendeeel.
+ 
+[TODO: verhuizen naar ontwerp van database]
 
 \subsection{Het oude systeem: XML-bestanden}
 
@@ -50,6 +77,8 @@ Meta-attributen, VIEWs
 
 \subsection{GUI}
 Met behulp van de Qt toolkit [link]...
+
+Multi-threading voor responsiviteit
 
 \section{Integratie in thera project}
 Gebruik van bibliotheken, ...
