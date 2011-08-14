@@ -91,6 +91,11 @@ dependency scanning!
 De query cache staat af
 Om de variabiliteit van de filesystem (nederlands) cache een beetje buiten spel te zetten zijn al deze routines ``opgewarmd''
 
+Pagination
+Late row lookup
+
+Ideaal = minder dan een seconden voor elke gegeven query vanuit een gebruikersinteractie standpunt (System Response Time and User Satisfaction pagina 5)
+
 Effect van DB configuratie (veel geheugen\ldots)
 
 Suggested workaround voor het text probleem -> sphinx, restrict fragment names (niet ZO gemakkelijk), string + nummer
@@ -101,5 +106,5 @@ MySQL Reference Manual for version 5.1
 
 http://nlp.stanford.edu/IR-book/html/htmledition/permuterm-indexes-1.html (dit is hoe wildspeed werkt) (LIKE performance lijkt niet zo slecht in Postgres, het is de sorting eerder\ldots)
 http://www.slideshare.net/techdude/how-to-kill-mysql-performance
-http://stackoverflow.com/questions/1540590/how-to-speed-up-like-operation-in-sql-postgres-preferably <--- use trigrams (fail)
+http://stackoverflow.com/questions/1540590/how-to-speed-up-like-operation-in-sql-postgres-preferably <--- use trigrams (fail), MAAR BETER IN 9.1 (future research)
 https://cgsrv1.arrc.csiro.au/blog/2010/06/23/materializedindexed-views-for-postgresql/
