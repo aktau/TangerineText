@@ -4,18 +4,17 @@
   promotor={Prof.\,dr.\,ir.\ P. Dutr\'{e}},
   assessor={Ir.\,N/A\and N/A},
   assistant={Dr. ir.\ B.J.~Brown}}
+
 % De volgende \setup mag verwijderd worden als geen fiche gewenst is.
 \setup{filingcard,
   translatedtitle={Een collaboratief platform voor het effici\"{e}nt reconstrueren van fresco's},
   udc=621.3,
   shortabstract={Hier komt een heel bondig abstract van hooguit 500
     woorden. \LaTeX\ commando's mogen hier gebruikt worden. Blanco lijnen
-    (of het commando \texttt{\string\pa r}) zijn wel niet toegelaten!
-    \endgraf \lipsum[2]}}
-% Verwijder de "%" op de volgende lijn als je de kaft wil afdrukken
+    (of het commando \texttt{\string\pa r}) zijn wel niet toegelaten!}}
+
+
 %\setup{coverpageonly}
-% Verwijder de "%" op de volgende lijn als je enkel de eerste pagina's wil
-% afdrukken en de rest bv. via Word aanmaken.
 %\setup{frontpagesonly}
 
 % Kies de fonts voor de gewone tekst, bv. Latin Modern
@@ -23,32 +22,95 @@
 
 % Hier kun je dan nog andere pakketten laden of eigen definities voorzien
 \usepackage[dutch]{babel}
+\usepackage[pdfusetitle,colorlinks,plainpages=false,urlcolor=blue]{hyperref}
 \usepackage{pdfsync}
 \usepackage{graphicx}
-\usepackage{url}
-%\usepackage[parfill]{parskip}
-%\usepackage{parskip}
-%\parskip = \baselineskip
-%\setlength{\parskip}{\baselineskip}
+\setkeys{Gin}{draft} % force draftmode
+\usepackage{subfig}
 \setlength{\parindent}{0in}
 
-%\setlength{\parindent}{0pt}
-%\nonzeroparskip
-%\abnormalparskip{\baselineskip}
+\usepackage{listings}
+\usepackage{courier}
+\lstset{
+ 		 %identifierstyle=\ttfamily,
+         %keywordstyle=\color[rgb]{0,0,1},
+         commentstyle=\color[rgb]{0.133,0.545,0.133},
+         %stringstyle=\color[rgb]{0.627,0.126,0.941},
+         stringstyle=\color{blue},
+         %stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+ 		 columns=fullflexible,
+         basicstyle=\footnotesize\sffamily, % Standardschrift  \footnotesize\ttfamily \small\sffamily
+         %numbers=left,               % Ort der Zeilennummern
+         numberstyle=\tiny,          % Stil der Zeilennummern
+         %stepnumber=2,               % Abstand zwischen den Zeilennummern
+         numbersep=5pt,              % Abstand der Nummern zum Text
+         tabsize=2,                  % Groesse von Tabs
+         extendedchars=true,         %
+         breaklines=true,            % Zeilen werden Umgebrochen
+         %keywordstyle=\color{red},
+    	 frame=b,
+         keywordstyle=[1]\textbf,    % Stil der Keywords
+         keywordstyle=[2]\textbf,    %
+         keywordstyle=[3]\textbf,    %
+         keywordstyle=[4]\textbf,   %\sqrt{\sqrt{}} %
+         %stringstyle=\color{white}\ttfamily, % Farbe der String
+         showspaces=false,           % Leerzeichen anzeigen ?
+         showtabs=false,             % Tabs anzeigen ?
+         xleftmargin=17pt,
+         framexleftmargin=17pt,
+         framexrightmargin=5pt,
+         framexbottommargin=4pt,
+         %backgroundcolor=\color{lightgray},
+         showstringspaces=false      % Leerzeichen in Strings anzeigen ?
+ }
+ \lstloadlanguages{
+         %[Visual]Basic
+         %Pascal
+         %C
+         C++,
+         XML,
+         HTML
+         %Java
+ }
+ 
+%  \lstset{
+% 	language=[Visual]C++,
+% 	keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
+% 	identifierstyle=\ttfamily,
+% 	commentstyle=\color[rgb]{0.133,0.545,0.133},
+% 	stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+% 	showstringspaces=false,
+% 	basicstyle=\small,
+% 	numberstyle=\footnotesize,
+% 	numbers=left,
+% 	stepnumber=1,
+% 	numbersep=10pt,
+% 	tabsize=2,
+% 	breaklines=true,
+% 	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+% 	breakatwhitespace=false,
+% 	aboveskip={1.5\baselineskip},
+%   columns=fixed,
+%   upquote=true,
+%   extendedchars=true,
+% % frame=single,
+% % backgroundcolor=\color{lbcolor},
+% }
+ 
+    %\DeclareCaptionFont{blue}{\color{blue}} 
 
-% Tenslotte wordt hyperref gebruikt voor pdf bestanden.
-% Dit mag verwijderd worden voor de af te drukken versie.
-\usepackage[pdfusetitle,colorlinks,plainpages=false]{hyperref}
+  %\captionsetup[lstlisting]{singlelinecheck=false, labelfont={blue}, textfont={blue}}
+  \usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox[cmyk]{0.43, 0.35, 0.35,0.01}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white, singlelinecheck=false, margin=0pt, font={bf,footnotesize}}
+\renewcommand*\lstlistingname{Broncode}
 
-%%%%%%%
-% Om wat tekst te genereren wordt hier het lipsum pakket gebruikt.
-% Bij een echte masterproef heb je dit natuurlijk nooit nodig!
-\IfFileExists{lipsum.sty}%
- {\usepackage{lipsum}\setlipsumdefault{11-13}}%
- {\newcommand{\lipsum}[1][11-13]{\par Hier komt wat tekst: lipsum ##1.\par}}
-%%%%%%%
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage[latin1]{inputenc}
+\usepackage[table]{xcolor}
 
-%\includeonly{hfdst-n}
 \begin{document}
 
 \begin{preface}
@@ -63,9 +125,19 @@
   Deze \texttt{abstract} moet nog geschreven worden.
 \end{abstract}
 
+%http://people.cs.kuleuven.be/~ronald.cools/MasterProef/titelbladFirW.html
+% hoe dien je de thesis elektronisch in (via Toledo):
+% https://eng.kuleuven.be/personeel/ethesis/ethesis-hdl-student.pdf
+
+% Extra info: https://eng.kuleuven.be/onderwijs/studenten/masterproef/index.html
+
+% Richtlijnen over wat er in je thesis MOET staan (abstract, \ldots): https://eng.kuleuven.be/studenten/masterproef/tips_nl.pdf
+% Zie ook de thesis van Geert na: 
+
 % Een lijst van figuren en tabellen is optioneel
 %\listoffigures
 %\listoftables
+
 % Bij een beperkt aantal figuren en tabellen gebruik je liever het volgende:
 \listoffiguresandtables
 
@@ -79,28 +151,17 @@
 \include{database}
 \include{modules}
 %\include{tests}
-%\include{hfdst-1}
-%\include{hfdst-2}
-% ... en zo verder tot
-%\include{hfdst-n}
+\include{toekomst}
 \include{besluit}
 
 % Indien er bijlagen zijn:
-\appendixpage*          % indien gewenst
+\appendixpage*  
 \appendix
 \include{app-A}
-% ... en zo verder tot
-%\include{app-n}
 
 \backmatter
-% Na de bijlagen plaatst men nog de bibliografie.
-% Je kan de  standaard "abbrv" bibliografiestijl vervangen door een andere.
-\bibliographystyle{abbrv}
+%\bibliographystyle{abbrv}
+\bibliographystyle{ieeetr}
 \bibliography{referenties}
 
 \end{document}
-
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: t
-%%% End: 

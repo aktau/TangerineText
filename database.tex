@@ -1,15 +1,185 @@
 \chapter{Bespreking van het database ontwerp}
 \label{hoofdstuk:database}
+De visuele delen van het platform bekommeren zich met de \textbf{de manier waarop} er moet weergegeven worden, de datalaag die nu besproken wordt is verantwoordelijk voor. V\'o\'or dit kan gebeuren moet de gebruiker kiezen waar de paren vandaan moeten komen, hoe ze gesorteerd moeten zijn, aan welke voorwaarden ze moeten voldoen en of er eventueel extra informatie moet weergegeven worden. Dit alles neemt de datalaag voor zijn rekening.
 
 \section{Vereisten}
-Gebruikers moeten een externe database server kunnen aanspreken om zo te werken op de meest actuele data. Het moet ook steeds mogelijk zijn om op een eigen kopie van de data te werken
+De hoofdpunten waaraan deze laag moet voldoen werden reeds opgesomd in hoofdstuk~\ref{hoofdstuk:doelen}, namelijk: snelheid, universele toegang, synchroniseerbaarheid en maximale flexibiliteit voor data-analyse. Eerst wordt een analyse gemaakt van de structuur van de data. Vervolgens wordt er gekeken naar de huidige methode die het thera project hiervoor hanteert. Enkele alternatieven worden besproken en op basis daarvan wordt een keuze gemaakt.
+
+\subsection{Ontleding van de data}
+De kern van de data is een verzameling fragmentparen,
+...relationeel van aard? => SQL database
+Het Eigenschap-patroon (Property pattern)
+
+Huidige sistuatie = Properties pattern? % ( http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html#redacted )
+
+\section{Het oude systeem: XML-bestanden}
+De fragmentparen en hun attributen worden door automatische herkenners opgeslagen in een XML bestand zoals in figuur~\ref{code:fragxml}. Dit formaat is uitermate geschikt voor het overbrengen van de data naar andere subsystemen en is leesbaar door een mens. Het is minder geschikt als een permanent opslag- en zoekformaat. Dat laatste is echter de manier waarop het nu gebruikt wordt, met trage applicaties tot gevolg. Om een redelijke snelheid te behouden tijdens het zoeken of sorteren moeten Griphos en Browsematches het XML bestand volledig in het werkgegheugen plaatsen. Voor een document met 50000 paren neemt dit reeds een goede 300MB in beslag voor paren met elk 11 attributen (zonder afbeeldingen of 3D-modellen). Dit extrapoleren naar een miljoen paren geeft 5GB aan vereist werkgeheugen, hetgeen bij de meeste systemen van vandaag leidt tot het wegschrijven van data naar het bestandsssyteem of eerder nog een geheugenallocatiefout.\\
+
+Het inladen van dit XML bestand is tijdrovend. Tabel~\ref{table:matchesloadspeed} laat zien dat het inladen minutenlang kan duren. Griphos en Browsematches gebruiken dezelfde manier om data in te lezen, maar vertonen desalniettemin een groot verschil in laadtijd. De reden is dat Griphos meteen ook de afbeeldingen van elk fragment ophaalt. Meer nog, na het laden van 50000 paren neemt het Griphos proces 1.5GB RAM in beslag. Het lijkt erop dat dit geheugen niet vrijgemaakt noch herbruikt wordt, want een tweede keer de lijst met fragmentparen openen zorgde er op het testsysteem met 2GB RAM voor dat Griphos automatisch werd afgesloten wegens teveel geheugenverbruik. Browsematches (en de thesisapplicatie) laden de afbeeldingen pas wanneer ze eigenlijk nodig zijn en besparen op die manier veel geheugen. Het thesisproject gaat in feite nog verder en laadt de fragmenten zelf pas in wanneer ze nodig zijn, dit komt later aan bod.
+
+\begin{table}[h]
+	\rowcolors{2}{gray!50}{white}
+	\begin{center}
+		\begin{tabular}{|l|r|r|r|}
+		    \rowcolor{gray!75}
+		    \hline
+		    & \textbf{Griphos} &  \textbf{Browsematches} & \textbf{Thesis} \\
+		    \hline
+		    \textbf{\textasciitilde 4000 paren laden} & 54 sec & 16 sec & 0 sec \\
+		    \textbf{\textasciitilde 50000 paren laden} & 7 min 18 sec & 2 min 47 sec  & 0-3 sec* \\
+		    \textbf{\textasciitilde 250000 paren laden} & niet getest & niet getest & 0-15 sec* \\
+		    \hline
+		\end{tabular}
+	\end{center}
+	\caption{Meting van de tijden die elk programma nodig heeft om een collectie paren in te laden}
+	\label{table:matchesloadspeed}
+\end{table}
+
+Eenmaal geladen, is het niet zo eenvoudig om te navigeren in deze collectie
+
+Als het echter aankomt op het aanwenden van de data om in te zoeken schiet het formaat tekort.
+
+\lstinputlisting[float=h,label=code:fragxml,caption=Uittreksel van een fragmentpaarbestand (hier worden slechts 2 paren getoond)]{source/shortmatches.xml}
+
+XML bestand volledig in het geheugen ingeladen ---> 300 MB voor 50000 paren, dus voor 2 miljoen paren\ldots
+
+E\'en van de belangrijkste stappen op weg naar een collaboratieve applicatie, is het omvormen van\\
+
+Het ontwerp van het database model en de implementatie details zijn groot genoeg om hun eigen hoofdstuk te verdienen, zij worden later in hoofdstuk [...] besproken.\\
 
 \section{Alternatieven}
-NoSQL (Cassandra, \ldots)
+Het moet gratis zijn! (niet overdreven veel middelen in het thera project en ``enterprise'' oplossingen zijn vaak zeer prijzig) ==> open-source of tenminste gratis.
+
+NoSQL (Cassandra, \ldots) http://arin.me/blog/wtf-is-a-supercolumn-cassandra-data-model --- http://nosql.mypopescu.com/post/573604395/tutorial-getting-started-with-cassandra (statische sort == slecht voor onze doeleinden)
 SQL
-XML database (oud)
+XML database (oud) (zie wiki) XQuery, \ldots
+
+XML dismissed -> volgende sectie is kiezen tussen SQL en NoSQL
 
 Redenering!
+
+\subsubsection{Paren}
+
+\subsubsection{Attributen van paren}
+
+\subsubsection{Complexe informatie die niet in een simpel attribuut past}
+
+\subsection{De vereisten van een database ontwerp}
+Zoals in sectie [doelen] omschreven moet de applicatie in staat zijn om data op een uitbreidbare manier uit te lezen en te veranderen, liefst zonder 
+
+\subsection{Pagination}
+
+--> beperken van datatransfer
+--> het niet steeds opnieuw vragen van hoeveel fragmenten er voldoen aan de criteria
+
+\section{SQL of niet}
+Er is dus een idee van wat er moet opgeslagen worden. Er is een grote vari\"eteit aan oplossingen mogelijk
+
+De zogenaamde ``NoSQL'' oplossingen schieten als paddenstoelen uit de grond. De meerderheid hiervan functioneren als sleutel-waarde opslag. Door de veelheid aan oplossingen en hun (relatief) jonge leeftijd is het niet evident een volledige vergelijking te maken. Nogal wat artikels over NoSQL oplossingen lijken zonder meer te evangeliseren, waardoor het moeilijk is een realistisch beeld te krijgen van hun specifieke sterktes en zwaktes.
+
+NoSQL, lichte uitleg over NoSQL (Cassandra, \ldots)
+
+De belofte van object serialisatie en schemaloze\footnote{In een traditionele relationele database is steeds een schema aanwezig dat precies specificeert wat een object (= rij in een tabel) is. Het is minder eenvoudig om de definitie van object aan te passen door bijvoorbeeld een attribuut (= kolom) toe te voegen, maar niet onmogelijk.} opslag is verleidelijk. De basisvereisten van dit thesisproject qua data gaan in eerste aanleg niet verder dan het opslaan/serialiseren van objecten (\emph{User}, \emph{FragmentPair}, \emph{History}). Het niet weten welke attributen er in de toekomst gaan belangrijk zijn lijkt goed te passen in het schemaloze aspect.\\
+
+Een goede vergelijking van beide aanpakken kan als er gekeken wordt naar: kan de implementatie het soort operaties dat nu nodig is aan (op performante wijze? Kan de implementatie voorziene/niet-vooziene uitbreidingen aan (many-to-many)?\\
+
+
+Vergelijking van NoSQL tegenover SQL oplossingen waar die toepasselijk zijn op de vereisten van het project
+
+Berkeley DB, Tokyo Cabinet, CouchDB, MongoDB, Cassandra
+
+Er zijn vele argumenten over wat wel en niet geschikt is voor elk type database, waarvan een heel deel tegenstrijdig zijn. Uit dit kluwen komt eigenlijk slechts \'e\'en goede raad naar voren: probeer het zelf. Het is echter niet zo evident noch de beste besteding van tijd om twee verschillende maar complete subsystemen uit te bouwen om te zien welke de bovenhand haalt. Omdat er nog verschillende gebruiksscenarios niet gekend zijn werd er gekozen voor een SQL oplossing, waarvan de auteur meer zekerheid had dat het de taak en alle toekomstige taken aankon.
+
+\rowcolors{2}{gray!50}{white}
+\begin{center}
+	\begin{tabular}{|l|r|r|r|}
+	    \rowcolor{gray!75}
+	    \hline
+	    & \textbf{SQL} &  \textbf{NoSQL} & \textbf{Kyoto Cabinet} \\
+	    \hline
+	    \textbf{Portabiliteit/Uniformiteit} & Hoog (gestandaardiseerde taal) & Laag (veel verschillende talen) \\
+	    \textbf{Ondersteuning in de toekomst} & Hoog & Laag (vele projecten die een onzekere levensduur hebben) \\
+	    \hline
+	\end{tabular}
+\end{center}
+
+Beide systemen bezitten voord- en nadelen. Wat echter duidelijk is, is dat bij NoSQL databases er op voorhand moet geweten zijn welk type query het meest frequent gaat zijn (Cassandra\ldots)
+ Omdat er geen 100\% zekerheid is over de uitbreidingen die gaan komen aan het datamodel
+
+Beide modellen voor dataopslag kunnen in principe dezelfde soort operaties aan, de verschillen bevinden zich in de gemakkelijkheid van uitvoeren en de performantie. Het is echter nog steeds niet evident welke uiteindelijk de optimale keuze is. De wereld van het databeheer bevindt zich in een stroomversnelling en op elk gegeven moment kan er een fantastische nieuwe oplossing uit de bus komen. Het valt op te merken dat op de manier er nu van een XML database gemigreerd zal worden naar een andere technologie, dit later openieuw kan gebeuren als er een duidelijk betere oplossing zich voordoet. Alle operaties op de objecten die in dit project reeds zijn ge\"implementeerd, zijn vanuit het perspectief van de gebruiker --- archeoloog of ontwikkelaar --- database-agnostisch. De schijnbare uitzondering op deze regel lijkt het filteren te zijn, waar een valide (vereenvoudigde\footnote{Hoewel er niet gecontroleerd wordt of er geen SQL subqueries in de modelfilter aanwezig zijn, is het gebruik ervan niet ondersteund (hoewel het voor de meeste SQL-databases geen probleem is deze filters uit te voeren).}) SQL WHERE gebruikt wordt om condities op de eigenschappen van paren te zetten. Deze zijn echter niet zo complex (zie \ref{code:sortingfiltering}) en dus gemakkelijk om te bouwen naar iets wat een willekeurige onderliggende database kan begrijpen. De WHERE-syntax kan dus ook, ook al verstaat de database het niet zonder meer. Indien dit niet genoeg is kunnen er gewoon meerdere filtertypes zijn, een SQL-type, een CouchDB-type, enzovoort. Een implementatie van een model zal dan zelf moeten uitzoeken hoe het alles moet vertalen of gewoon de filter weigeren.
+
+Niet alleen is objectpersistentie nodig (de sterkte van key-value NoSQL databases), maar de manier om de objecten te vinden moet zo flexibel mogelijk zijn. NoSQL databases bieden verschillende hulpmiddelen aan om dit te doen (MapReduceCombine, CouchDB Views), \ldots 
+
+Een lichte voorkeur voor de SQL oplossingen is niet verwonderlijk. Er zijn verschillende implementaties met uniforme taal De auteur is reeds bekend met de werking en als men moeilijk kan voorspellen wat voor een queries zullen nodig zijn (data-mining) blijken SQL databases sneller te zijn. SQL lijkt gemakkelijker te gebruiken.\\
+
+Een van de belangrijkste voordelen van NoSQL type databases is de ingebouwde schaleerbaarheid over meerdere machines. Het kost werkelijk geen moeite om deze implementaties over meerdere machines te laten samenwerken en hun performantie gaat zo goed als lineair met het aantal machines omhoog. Zullen de datavereisten van het thera project ooit zo groot worden dat een enkele krachtige machine niet meer voldoet? Op het eerste zicht lijkt het van niet, hedendaagse . Daarenboven is het daarom niet onmogelijk om SQL databases in een cluster te laten werken, gratis open-source implementaties als MySQL en PostgreSQL hebben beide ondersteuning voor clustering~\cite{postgrescluster, mysqlcluster}. Het verschil is de eenvoudigheid waarmee dit uit te bouwen is.\\
+
+De syntax van NoSQL is niet simpeler, ook niet voor de specifieke queries om paren op te halen (zie infographic). Een andere vaststelling is dat de bibliotheek die door het thera project en dus ook dit thesisproject gebruikt wordt, Qt, ingebouwde ondersteuning heeft voor SQL databases. Het nalezen van artikels en conversaties op het internet en private correspondentie met ervaringsdeskundigen heeft geleerd dat NoSQL databases hun snelheid laten blijken bij veel transacties en een beperkte klasse van verzoeken, die moet echter op voorhand gekend zijn. In essentie moet de data ingedeeld worden zodat het soort verzoeken dat verwacht wordt snel kan afgehandeld worden [REFERENTIE]. Hoewel een deel van de verzoeken die nodig zijn in dit project daadwerkelijk gekend zijn, is \'e\'en van de uitgangspunten net dat er een grote vari\"eteit aan verzoeken moet mogelijk zijn.  
+
+Om al de redenen is er gekozen om het stabiele SQL pad te kiezen, met de deur open naar eventuele alternatieven wanneer die een overtuigend voordeel bieden.
+
+[figuur mogelijke NoSQL uitbreiding, TokyoMatchModel, CouchDBModel,\ldots] 
+
+Een voordeel van SQL systemen is dat er eenvoudig tussen verschillende imlementaties kan gemigreerd worden als de vereisten veranderen. Een broekzakversie die bij momenten geen connectie met het internet heeft kan op het compacte SQLite vertrouwen terwijl een krachtige server een heel grote database kan draaien met MySQL/PostgreSQL/Oracle/\ldots. Al deze verschillende implementaties kunnen met dezelfde subsystemen aangesproken worden. Bij vele NoSQL systemen is dit soort flexibiliteit niet mogelijk (een uitzondering is bijvoorbeeld http://fallabs.com/kyotocabinet/).\\
+
+http://stackoverflow.com/questions/5438500/example-of-a-task-that-a-nosql-database-cant-handle-if-any (auto-sync\ldots)
+http://stackoverflow.com/questions/2403174/is-there-any-nosql-database-as-simple-as-sqlite
+Supergoede argumenten voor en tegen NoSQL/SQL: http://buytaert.net/nosql-and-sql
+
+Dat gezegd zijnde, behalve de query interface
+
+\section{Eerste iteratie}
+
+\subsection{De database laag}
+
+UML-achtig schema met de Database, het MatchModel, SQLFragmentConf, de interopabiliteit
+
+----> hieruit vloeit de requirement van een matches tabel en attributen
+
+Op deze manier wordt de meest eenvoudige van een \emph{FragmentPair} ongeveer zo geschreven:
+
+\lstinputlisting[label=fragmentpair1,caption=Een versimpelde interface voor een FragmentPair en diens implementatie met directe verzoeken aan de database, language=C++]{source/pairinterface.cpp}
+
+\subsection{Een grote tabel of vele verschillende}
+
+Om de attributen van een paar te modelleren, kan er gekozen worden tussen deze allemaal op te slaan in de hoofdtabel (\emph{matches}) of voor elk attribuut een andere tabel aan te maken.
+
+Indien het mogelijk zou zijn dat een (grote) subset van paren een attribuut gewoonweg niet bezit, kan het 
+
+Hybride aanpak:
+
+History altijd in verschillende tabellen
+
+%http://stackoverflow.com/questions/4056093/what-are-the-disadvantages-of-using-a-key-value-table-over-nullable-columns-or
+%http://stackoverflow.com/questions/695752/product-table-many-kinds-of-product-each-product-has-many-parameters
+%http://en.wikipedia.org/wiki/Entity-Attribute-Value_model
+
+Zijn de meeste attributen gedefini\"eerd voor alle paren?
+
+Voordelen denormalizatie: de index wordt niet ettelijke keren redundant herhaald
+Voordelen normalizatie
+
+Simpele attributen, database query voor elk attribuut (dit bleef in stand tot er op een externe server geprobeerd werd)
+Directe write-through is nooit een echt probleem omdat dit minder vaak gebeurt, op minder fragmenenten\ldots men zal veel vaker van venster wisselen dan ineens alle statussen omgooien
+
+Dependency analyse voor filters
+
+\subsection{Complexe informatie voorstellen als een attribuut}
+Meta-attributen, VIEWs ---> duplicates (conflicts?)
+
+\subsection{Geschiedenis}
+De geschiedenis van een attribuut bijhouden heeft twee voordelen: het is nodig voor samenvoegalgoritmen + het is een weer een bron van data (welke paren zijn veel van status veranderd?) + sommige attributen worden op die manier nuttiger, 
+
+\section{Verschillende database systemen}
+
+\subsection{SQLite}
+Aan de start van het project leek
+
+\subsection{MySQL}
+MySQL werd eerst gekozen wegens de alomtegenwoordige
+
+\subsection{De late toevoeging van PostgreSQL}
+Dankzij de flexibiliteit die nodig was om zowel SQLite als MySQL het grootst mogelijke deel van de code te laten delen
 
 \section{Externe database traag, interne database snel}
 Het grote probleem dat duidelijk werd na het rechtstreeks werken met externe databases, is dat zelfs op een lokaal netwerk de verzoeken een zeer grote vertraging opleverden.\\
@@ -101,7 +271,7 @@ Effect van DB configuratie (veel geheugen\ldots)
 Suggested workaround voor het text probleem -> sphinx, restrict fragment names (niet ZO gemakkelijk), string + nummer
 Suggested workaround voor het indexing probleem (zoals gezien voor status IN (\ldots)) -> force een index?! dunno\ldots hij pakt in ieder geval de verkeerde!
 
-‘High Performance MySQL’, Second Edition, O’REILLY, ISBN: 978-0-596-10171-8
+'High Performance MySQL', Second Edition, O'REILLY, ISBN: 978-0-596-10171-8
 MySQL Reference Manual for version 5.1
 
 http://nlp.stanford.edu/IR-book/html/htmledition/permuterm-indexes-1.html (dit is hoe wildspeed werkt) (LIKE performance lijkt niet zo slecht in Postgres, het is de sorting eerder\ldots)
