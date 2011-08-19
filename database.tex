@@ -12,6 +12,7 @@ Het Eigenschap-patroon (Property pattern)
 
 Huidige sistuatie = Properties pattern? % ( http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html#redacted )
 
+
 \section{Het oude systeem: XML-bestanden}
 De fragmentparen en hun attributen worden door automatische herkenners opgeslagen in een XML bestand zoals in figuur~\ref{code:fragxml}. Dit formaat is uitermate geschikt voor het overbrengen van de data naar andere subsystemen en is leesbaar door een mens. Het is minder geschikt als een permanent opslag- en zoekformaat. Dat laatste is echter de manier waarop het nu gebruikt wordt, met trage applicaties tot gevolg. Om een redelijke snelheid te behouden tijdens het zoeken of sorteren moeten Griphos en Browsematches het XML bestand volledig in het werkgegheugen plaatsen. Voor een document met 50000 paren neemt dit reeds een goede 300MB in beslag voor paren met elk 11 attributen (zonder afbeeldingen of 3D-modellen). Dit extrapoleren naar een miljoen paren geeft 5GB aan vereist werkgeheugen, hetgeen bij de meeste systemen van vandaag leidt tot het wegschrijven van data naar het bestandsssyteem of eerder nog een geheugenallocatiefout.\\
 
@@ -66,6 +67,9 @@ Redenering!
 
 \subsubsection{Complexe informatie die niet in een simpel attribuut past}
 
+[uitleggen wat duplicates zijn, mss in ander hoofdstuk, mss in het stuk van de modules!]
+[comments enzovoort]
+
 \subsection{De vereisten van een database ontwerp}
 Zoals in sectie [doelen] omschreven moet de applicatie in staat zijn om data op een uitbreidbare manier uit te lezen en te veranderen, liefst zonder 
 
@@ -89,6 +93,8 @@ Een goede vergelijking van beide aanpakken kan als er gekeken wordt naar: kan de
 Vergelijking van NoSQL tegenover SQL oplossingen waar die toepasselijk zijn op de vereisten van het project
 
 Berkeley DB, Tokyo Cabinet, CouchDB, MongoDB, Cassandra
+
+Berkeley DB en Tokyo Cabinet zijn lightgewight en snelle oplossingen die er echter op vertrouwen dat alle data in het werkgeheugen past, de ondersteuning voor complexe vragen is ook bijna onbestaande. 
 
 Er zijn vele argumenten over wat wel en niet geschikt is voor elk type database, waarvan een heel deel tegenstrijdig zijn. Uit dit kluwen komt eigenlijk slechts \'e\'en goede raad naar voren: probeer het zelf. Het is echter niet zo evident noch de beste besteding van tijd om twee verschillende maar complete subsystemen uit te bouwen om te zien welke de bovenhand haalt. Omdat er nog verschillende gebruiksscenarios niet gekend zijn werd er gekozen voor een SQL oplossing, waarvan de auteur meer zekerheid had dat het de taak en alle toekomstige taken aankon.
 
@@ -116,7 +122,7 @@ Een lichte voorkeur voor de SQL oplossingen is niet verwonderlijk. Er zijn versc
 
 Een van de belangrijkste voordelen van NoSQL type databases is de ingebouwde schaleerbaarheid over meerdere machines. Het kost werkelijk geen moeite om deze implementaties over meerdere machines te laten samenwerken en hun performantie gaat zo goed als lineair met het aantal machines omhoog. Zullen de datavereisten van het thera project ooit zo groot worden dat een enkele krachtige machine niet meer voldoet? Op het eerste zicht lijkt het van niet, hedendaagse . Daarenboven is het daarom niet onmogelijk om SQL databases in een cluster te laten werken, gratis open-source implementaties als MySQL en PostgreSQL hebben beide ondersteuning voor clustering~\cite{postgrescluster, mysqlcluster}. Het verschil is de eenvoudigheid waarmee dit uit te bouwen is.\\
 
-De syntax van NoSQL is niet simpeler, ook niet voor de specifieke queries om paren op te halen (zie infographic). Een andere vaststelling is dat de bibliotheek die door het thera project en dus ook dit thesisproject gebruikt wordt, Qt, ingebouwde ondersteuning heeft voor SQL databases. Het nalezen van artikels en conversaties op het internet en private correspondentie met ervaringsdeskundigen heeft geleerd dat NoSQL databases hun snelheid laten blijken bij veel transacties en een beperkte klasse van verzoeken, die moet echter op voorhand gekend zijn. In essentie moet de data ingedeeld worden zodat het soort verzoeken dat verwacht wordt snel kan afgehandeld worden [REFERENTIE]. Hoewel een deel van de verzoeken die nodig zijn in dit project daadwerkelijk gekend zijn, is \'e\'en van de uitgangspunten net dat er een grote vari\"eteit aan verzoeken moet mogelijk zijn.  
+De syntax van NoSQL is niet simpeler, ook niet voor de specifieke queries om paren op te halen (zie infographic). Een andere vaststelling is dat de bibliotheek die door het thera project en dus ook dit thesisproject gebruikt wordt, Qt, ingebouwde ondersteuning heeft voor SQL databases. Het nalezen van artikels en conversaties op het internet en private correspondentie met ervaringsdeskundigen heeft geleerd dat NoSQL databases hun snelheid laten blijken bij veel transacties en een beperkte klasse van verzoeken, die moet echter op voorhand gekend zijn\cite{cassandradatamodel}. In essentie moet de data ingedeeld worden zodat het soort verzoeken dat verwacht wordt snel kan afgehandeld worden [REFERENTIE]. Hoewel een deel van de verzoeken die nodig zijn in dit project daadwerkelijk gekend zijn, is \'e\'en van de uitgangspunten net dat er een grote vari\"eteit aan verzoeken moet mogelijk zijn.  
 
 Om al de redenen is er gekozen om het stabiele SQL pad te kiezen, met de deur open naar eventuele alternatieven wanneer die een overtuigend voordeel bieden.
 
