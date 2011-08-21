@@ -1,0 +1,20 @@
+\chapter{Synchronisatie}
+\label{hoofdstuk:synchronisatie}
+
+3-WAY-MERGE
+
+De oplossing om aan de vereisten van centrale en decentrale toegang, grote hoeveelheden data en navigatie te voldoen wordt in hoodstuk \ref{hoofdstuk:database} besproken. Het is echter reeds duidelijk dat er een database zal moeten gebruikt worden. Om twee van deze databases te synchroniseren is er een component ontwikkeld die een aantal fasen doorloopt. De mogelijkheid bestaat om er later nog meer te maken maar voorlopig zijn er 3 fasen: \textbf{Gebruikers}, \textbf{Paren} en \textbf{Attributen}. In elke fase krijgt de gebruiker een scherm te zien met de verschillen tussen de 2 databases die een algoritme heeft gedetecteerd en krijgt ze de mogelijkheid om aanpassingen te maken alvorens naar de volgende fase over te stappen. Het is belangrijk gebruikers keuzes te laten maken waarin ze ge\"interesseerd zijn en ze niet lastig te vallen met keuzes die ze niet willen maken (beide zaken negeren leidt tot frustraties~\cite{Joel2001}). Het algoritme probeert steeds een standaardkeuze in te vullen aan de hand van heuristieken (dit hangt af van de fase), de gebruiker kan deze indien gewenst natuurlijk veranderen. Tegelijkertijd moet de gebruiker ge\"informeerd worden van alle stappen die het algoritme zal ondernemen. 
+
+Het gebruik van contextinformatie in geval van conflicten met diverging histories (bij attributen)
+
+\subsection{Paren}
+
+Overeenkomsten met verschillende id
+Overeenkomsten met dezelfde id
+Conflicten met dezelfde id
+Geen conflict, geen overeenkomst
+
+Deze subcomponent laat aan de volgende fasen weten welke acties er zijn ondernomen, meer bepaald welke id-transformatie een bepaalde object heeft meegemaakt
+
+\subsection{Attributen}
+\subsection{Geschiedenis}
