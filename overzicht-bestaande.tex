@@ -1,6 +1,6 @@
 \chapter{Overzicht van het thera project}
 \label{hoofdstuk:overzicht}
-Zoals eerder vermeld bouwt deze thesis verder op een reeds bestaand project. Om ze beter te kunnen situeren in het geheel is het handig om eerst even het thera project te bekijken om te kunnen zien waar dit project in past.
+Zoals eerder vermeld bouwt deze thesis verder op een reeds bestaand project. Om ze beter te kunnen situeren in het geheel is het handig om eerst even het thera project te bekijken en zodoende te verduidelijken waar het thesisproject in past.
 
 \section{De opdelingen van het thera project}
 Ruwweg gezien kan het reconstrueren van een fresco met behulp van de computer opgedeeld worden in 3~fasen.
@@ -8,7 +8,7 @@ Ruwweg gezien kan het reconstrueren van een fresco met behulp van de computer op
 \begin{description}
 	\item[Acquisitie] Alle gevonden fragmenten worden ingescand met behulp van 3D en 2D-scanapparatuur om zo een virtueel model van elk stuk te bouwen, zie \cite{Brown2008}.  
 	\item[Identificatie] Vervolgens worden deze virtuele fragmenten aan een zogenaamde \emph{matcher} (automatische herkenner) gegeven, die voor elk fragmentenpaar gaat kijken of ze mogelijk op elkaar passen. Er zijn verschillende types ontwikkeld. E\'en ervan (genaamd \emph{RibbonMatcher}~\cite{Brown2008}) kijkt enkel naar de randen van de brokstukken om te zien of ze in elkaar sluiten. Hierdoor is het in staat om passende fragmenten te ontdekken die voor mensen moeilijk te vinden zijn wegens te weinig distinctieve attributen zoals tekeningen. Het onderzoek gaat verder, in 2010 werd er een nieuw type ontwikkeld dat zijn analyse baseert op een combinatie van verschillende eigenschappen, zoals de sporen die een borstel kan nalaten bij het kleuren van een fresco of zelfs de beoordeling van de eerder genoemde \emph{RibbonMatcher}~\cite{TolerFranklin2010}.
-	\item[Classificatie \& Reconstructie] De derde en laatste stap bestaat uit het classificeren van wat de vorige stappen produceren. Elk voorgesteld paar moet gecontroleerd worden op validiteit. Verschillende statussen kunnen toegekend worden aan een paar, zoals: \emph{geconfirmeerd}, \emph{misschien}, \emph{nee}, \emph{in conflict met een ander paar}, et cetera. Het algoritme produceert in de regel zeer veel paren van brokstukken, waarvan slechts een klein deel correct kan zijn. [BARBARA] De drempel voor het beslissen van wat een paar kan zijn en wat niet wordt in de vorige stap zo laag ingesteld omdat men wil vermijden dat twee fragmenten die toch passen genegeerd worden. Anders gezegd, de kost van ``\emph{false negatives}'' wordt hoog ingeschat. Uiteindelijk zal hieruit een gereconstrueerde fresco moeten ontstaan.
+	\item[Classificatie \& Reconstructie] De derde en laatste stap bestaat uit het classificeren van wat de vorige stappen produceren. Elk voorgesteld paar moet gecontroleerd worden op validiteit. Verschillende statussen kunnen toegekend worden aan een paar, zoals: \emph{geconfirmeerd}, \emph{misschien}, \emph{nee}, \emph{in conflict met een ander paar}, et cetera. Het algoritme produceert in de regel zeer veel paren van brokstukken, waarvan slechts een klein deel correct kan zijn. De drempel voor het beslissen van wat een paar kan zijn en wat niet wordt in de vorige stap zo laag ingesteld omdat men wil vermijden dat twee fragmenten die toch passen genegeerd worden. Anders gezegd, de kost van ``\emph{false negatives}'' wordt hoog ingeschat. Uiteindelijk zal hieruit een gereconstrueerde fresco moeten ontstaan.
 \end{description}
 
 \section{Reconstructie, de bestaande oplossingen}
@@ -16,7 +16,7 @@ Het thesisproject besproken in deze tekst tracht de reeds bestaande hulpmiddelen
 
 \subsection{Griphos}
 
-Griphos was de eerste applicatie gericht op het weergeven en beoordelen van de resultaten van de voorgaande stappen. Het werd ontworpen met het doel een centraal zenuwstelsel te zijn voor alle informatie en met deze uiteindelijk een (zo goed mogelijk) gereconstrueerd fresco te maken. Het is mogelijk om zowel aparte fragmenten als automatisch herkende fragmentparen op een virtueel tafelblad te plaatsen en te manipuleren (zie figuur \ref{fig:griphostafelblad}). De idee achter een dergelijke voorstelling komt voort uit een rechstreekse vertaling naar de computer van wat een archeoloog op een werkelijk tafelblad doet.\\
+Griphos was de eerste applicatie gericht op het weergeven en beoordelen van de resultaten van de voorgaande stappen. Het werd ontworpen met het doel een centraal zenuwstelsel te zijn voor alle informatie en met deze uiteindelijk een (zo goed mogelijk) gereconstrueerd fresco te maken. Het is mogelijk om zowel aparte fragmenten als automatisch herkende fragmentparen op een virtueel tafelblad te plaatsen en te manipuleren (zie figuur \ref{fig:griphostafelblad}). De idee achter een dergelijke voorstelling komt voort uit een rechtstreekse vertaling naar de computer van wat een archeoloog op een werkelijk tafelblad doet.\\
 
 \begin{figure}[ht]
 	\begin{center}
@@ -38,8 +38,7 @@ Het heeft zijn nut al op verschillende vlakken bewezen, behalve detailinspectie 
 	\end{center}
 \end{figure}
 
-// te technisch voor dit hoofdstuk, verplaats naar iets later: [TODO: remove]
-Het eerste probleem wordt vooral veroorzaakt door trage datatoegang en te complexe visualisaties. Het programma slaagt alles betreffende paren op in een (enorm) XML bestand. Dit is nog doenbaar als men slechts een paar duizend voorstellen heeft maar ondervindt reeds snel onacceptabele vertragingen eens men er meer probeert in te laden. Ter voorbeeld, een kleine voorstellenverzameling van een bepaalde opgraving heeft er reeds 50000. Gekoppeld hieraan laadt Griphos ook steeds een hoge-kwaliteits afbeelding of zelfs een volledig 3D-model in voor elk paar De combinatie van het gebruik van grote XML-bestanden om informatie over de paren in op te slaan, en het steeds inladen van hoge kwaliteits-afbeeldingen en 3D-modellen. om alle info in op te slaan. Dit is bijzonder ineffici\"ent en biedt ook niet voldoende mogelijkheden tot uitbreiding. Een ander deel is het gebrek aan zoekmogelijkheden binnen de voorstellen.
+
 
 \subsection{Browsematches}
 
