@@ -1,6 +1,6 @@
 \chapter{Modules}
 \label{hoofdstuk:modules}
-In dit hoofdstuk komen de voor dit thesisproject ontwikkelde modules aan bod. Zij proberen elk de collectie paarvoorstellen op een andere manier voor te stellen om een beter overzicht te cre\"eren of sneller individuele paren te beoordelen.\\
+In dit hoofdstuk komen de modules aan bod die voor dit thesisproject ontwikkeld zijn. Zij proberen elk de collectie paarvoorstellen op een andere manier voor te stellen om een beter overzicht te cre\"eren of sneller individuele paren te beoordelen.\\
 
 Modules kunnen ervoor kiezen het model dat ze toegewezen krijgen te manipuleren of niet. Indien wel, zullen alle modules die dit model delen steeds de veranderingen volgen.
 
@@ -21,7 +21,7 @@ Met de pijltoetsen kunnen gebruikers navigeren in de verzameling, de statusbalk 
 \begin{figure}[ht]
 	\begin{center}
 		\includegraphics[width=1.0\columnwidth]{images/tileview-reduced-compare-01.png}
-		\caption{De doorsnedes van goede paren tegenover die van slechte paren. Een mens kan met ervaring leren om hieruit reeds veel af te leiden. Yassine Ryad bewees dat een algoritme kan gemaakt worden dat deze informatie in een rangschikking omzet.~\cite{Ryad2011}}
+		\caption{De doorsnedes van goede paren tegenover die van slechte paren. Een mens kan door ervaring leren om hieruit reeds veel af te leiden. Yassine Ryad bewees dat een algoritme kan gemaakt worden dat deze informatie in een rangschikking omzet.~\cite{Ryad2011}}
 		\label{fig:tileview-reduced-compare}
 	\end{center}
 \end{figure}
@@ -47,14 +47,14 @@ De laatste optie stelt een cluster rond het geselecteerde paar op. Het proces ga
 	\end{center}
 \end{figure}
 
-\emph{MatchTileView} kan niet enkel gebruikt worden om te bekijken, maar ook om attributen te veranderen. Men kan onder andere commentaren toevoegen en validaties veranderen. Aanduiden dat bepaalde paren duplicaten zijn gaat ook, hoewel het gemakkelijker is dit door een algoritme te laten bepalen.\\
+\emph{MatchTileView} kan niet enkel gebruikt worden om te bekijken, maar ook om attributen te veranderen. Men kan onder andere commentaren toevoegen en validaties veranderen. Aanduiden dat bepaalde paren duplicaten zijn gaat ook, hoewel het gemakkelijker is om dit door een algoritme te laten bepalen.\\
 
-Als laatste is er kopieerfunctionaliteit, met de gebruikelijke sneltoetsen of het rechterklikmenu kunnen paren naar Griphos overgezet worden om ze in meer detail te bekijken.
+Als laatste is er kopieerfunctionaliteit. Dankzij de gebruikelijke sneltoetsen of het rechterklikmenu kunnen paren naar Griphos overgezet worden om ze in meer detail te bekijken.
 
 \section{DetailView}
 \label{sec:detailview}
 
-\emph{DetailView} is een hulpmodule die door andere modules gebruikt wordt om weer te geven wat er kan bij elkaar gepuzzeld worden. Dit is gelijkaardig aan het tafelblad van Griphos, met het verschil dat men met \emph{DetailView} vrij kan navigeren in een 3D-wereld. Hun opzet is verschillend: met Griphos kan manueel gepuzzeld worden, terwijl \emph{DetailView} dient om automatische reconstructies te beoordelen. Dubbelklikken op alle voorstellen in figuur~\ref{fig:tileview-progconflict} zal deze aan elkaar zetten en weergeven in \emph{DetailView}. Het resultaat is figuur~\ref{fig:detailfull}.\\
+\emph{DetailView} is een hulpmodule die door andere modules gebruikt wordt om weer te geven wat er bij elkaar gepuzzeld kan worden. Dit is gelijkaardig aan het tafelblad van Griphos, met het verschil dat men met \emph{DetailView} vrij kan navigeren in een 3D-wereld. Hun opzet is verschillend: met Griphos kan manueel gepuzzeld worden, terwijl \emph{DetailView} dient om automatische reconstructies te beoordelen. Dubbelklikken op alle voorstellen in figuur~\ref{fig:tileview-progconflict} zal deze aan elkaar zetten en weergeven in \emph{DetailView}. Het resultaat is figuur~\ref{fig:detailfull}.\\
 
 \begin{figure}[ht]
 	\begin{center}
@@ -75,9 +75,9 @@ Als laatste is er kopieerfunctionaliteit, met de gebruikelijke sneltoetsen of he
   \label{fig:detail1}
 \end{figure}
 
-Figuur~\ref{fig:detailfull} is informatiever dan het dambordpatroon van \emph{MatchTileView} omdat het nuttige contextinformatie geeft. Het komt vaak voor dat door erosie een voorstel plausibel lijkt maar toch verkeerd is, maar het is veel minder waarschijnlijk dat drie fragmenten plausibel in elkaar passen en verkeerd zijn. Het kleine witte fragment dat geklemd zit tussen de twee grote grijze brokken is hier een voorbeeld van. Merk op dat de kleur van de fragmenten in dit specifieke voorbeeld niet zo relevant is\footnote{door vari\"erende brokstukkwaliteit en scancondities kunnen zelfs in een correct paar grote kleurverschillen optreden}, dit valt ook te merken in het grote kleurverschil bij het reeds goedgekeurde paar.\\
+Figuur~\ref{fig:detailfull} is informatiever dan het dambordpatroon van \emph{MatchTileView}, omdat het nuttige contextinformatie geeft. Het komt vaak voor dat door erosie een voorstel plausibel lijkt, maar toch verkeerd is. Daarentegen is het veel minder waarschijnlijk dat drie fragmenten plausibel in elkaar passen en verkeerd zijn. Het kleine witte fragment dat geklemd zit tussen de twee grote grijze brokken is hier een voorbeeld van. Merk op dat de kleur van de fragmenten in dit specifieke voorbeeld niet zo relevant is\footnote{door vari\"erende brokstukkwaliteit en scancondities kunnen zelfs in een correct paar grote kleurverschillen optreden}, dit valt ook te merken in het grote kleurverschil bij het reeds goedgekeurde paar.\\
 
-In eerste aanleg lijkt het er op dat een voorheen ongekende connectie is ontdekt, maar een dichtere inspectie toont een paar problemen. Figuur~\ref{fig:detailzoom} toont het geklemde fragment van dichterbij en geeft de geometrie weer als een puntenwolk, waardoor intersecties zichtbaar worden. Spijtig genoeg lijkt het erop dat een aanzienlijk volume van het geklemde fragment in het onderste grijze brokstuk zit\footnote{Dit is minder duidelijk op een kleine afbeelding maar goed te zien op een computerscherm, zeker als er tussen weergaven gewisseld wordt.}. De grafische voorstelling roteren onthult dat het geklemde fragment ook veel dunner is dan de rest, wat weer een aanwijzing is dat het misschien geen goed paar is. Desalniettemin zou dit best eens nagekeken worden met de echte brokstukken.
+In eerste aanleg lijkt het erop dat een voorheen ongekende connectie is ontdekt, maar een dichtere inspectie toont een paar problemen. Figuur~\ref{fig:detailzoom} toont het geklemde fragment van dichterbij en geeft de geometrie weer als een puntenwolk waardoor intersecties zichtbaar worden. Spijtig genoeg lijkt het erop dat een aanzienlijk volume van het geklemde fragment in het onderste grijze brokstuk zit\footnote{Dit is minder duidelijk op een kleine afbeelding maar goed te zien op een computerscherm, zeker als er tussen weergaven gewisseld wordt.}. De grafische voorstelling roteren onthult dat het geklemde fragment ook veel dunner is dan de rest, wat weer een aanwijzing is dat het misschien geen goed paar is. Desalniettemin zou dit best eens nagekeken worden met de echte brokstukken.
 
 \section{GraphView}
 Pure grafische plugins kunnen vertrouwen op andere plugins voor data-selectie: Om de werkbaarheid van dit systeem uit te testen werd een voorbeeldmodule ontwikkeld die alle huidige paren op een graaf plaatst en hier een ontwarringsalgoritme op toepast met behulp van de GraphViz bibliotheek. Deze voorstelling geeft een globaler beeld van de paren die aan de geldende criteria van het model voldoen.\\
@@ -92,7 +92,7 @@ Een gebruiksscenario is bijvoorbeeld om in \emph{MatchTileView} alle paren op te
 	\end{center}
 \end{figure}
 
-Hoe meer fragmenten er in een ketting aan elkaar kunnen gemaakt worden, hoe meer naar het midden ze worden gezet door het ontwarringsalgoritme. Nu de kettingen gemakkelijk zichtbaar zijn kunnen ze ook gevisualiseerd worden in 3D zoals in figuren~\ref{fig:graphchain1} en~\ref{fig:graphchain2}. Het valt op dat uit beide figuren gemakkelijk af te leiden valt welke \emph{misschien correcte} paren zeker niet correct zijn door naar de volumeoverlappingen te kijken (in~\ref{fig:graphchain1} zitten er zelfs een paar fragmenten volledig in een ander fragment).
+Hoe meer fragmenten er in een ketting aan elkaar kunnen gemaakt worden, hoe meer naar het midden ze worden gezet door het ontwarringsalgoritme. Nu de kettingen gemakkelijk zichtbaar zijn, kunnen ze ook gevisualiseerd worden in 3D zoals in figuren~\ref{fig:graphchain1} en~\ref{fig:graphchain2}. Het valt op dat uit beide figuren gemakkelijk af te leiden valt welke \emph{misschien correcte} paren zeker niet correct zijn door naar de volumeoverlappingen te kijken (in figuur~\ref{fig:graphchain1} zitten er zelfs een paar fragmenten volledig in een ander fragment).
 
 \begin{figure}[ht]
 	\begin{center}
