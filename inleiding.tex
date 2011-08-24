@@ -1,33 +1,21 @@
 \chapter{Inleiding}
 \label{inleiding}
-Het reconstrueren van fresco's waarvan in opgravingen fragmenten gevonden worden
-is een moeilijke taak. Men kan het vergelijken met het oplossen van een enorme
-puzzel waarvan de stukken arbitraire vormen hebben, de meesten hun originele
-kleur zijn verloren en er vele anderen ontbreken. Daarbovenop komt nog eens dat
-er heel wat stukken over de eeuwen heen een zekere vorm van slijtage hebben
-ondervonden, waardoor ze niet meer perfect op elkaar passen en dus confirmatie nog moeilijker maken.\\
+Het reconstrueren van fresco's waarvan in opgravingen fragmenten gevonden worden is een moeilijke taak. Men kan het vergelijken met het oplossen van een enorme puzzel waarvan de stukken arbitraire vormen hebben, de meesten hun originele kleur zijn verloren en er vele anderen ontbreken. Daarbovenop ondervinden veel fragmenten erosie over de eeuwen heen, waardoor ze niet meer perfect op elkaar passen en confirmatie nog moeilijker wordt.\\
 
-[afbeelding van enkele opgegraven stukken]\\
+\begin{figure}[ht]
+	\begin{center}
+		\includegraphics[width=0.6\columnwidth]{images/WDC7_26.JPG}
+		\caption{Een bak vol fragmenten die rond dezelfde locatie zijn gevonden, sommige zijn reeds aan elkaar gezet.}
+		\label{fig:bakinleiding}
+	\end{center}
+\end{figure}
 
-De stukken van de rand van het fresco met recht afgelijnde kanten of die nog een voldoende zichtbaar geometrisch patroon bevatten, zijn in vergelijking met de
-anderen eenvoudig met elkaar te verbinden. De overige fragmenten die minder informatie bevatten zijn echter een nachtmerrie om aan elkaar te koppelen, gezien het menselijke visuele systeem niet
-gemaakt is om dat soort grillige randen te vergelijken en aan elkaar te zetten. Om deze reden is het normaalgezien noodzakelijk om vele mogelijke kandidaten visueel
-te onderscheiden en ze over elkaar te laten glijden om te zien of het past en waar precies.\\
+De stukken met een nog zichtbaar geometrisch patroon of van de rand van het fresco zijn in vergelijking met de anderen eenvoudig met elkaar te verbinden. Zij zijn door een ervaren archeoloog zonder hulp in elkaar te passen. De overige fragmenten die minder informatie bevatten zijn echter een nachtmerrie om aan elkaar te puzzelen. Er ontbreekt informatie die een structuur vanop een afstand laat zien, het menselijke visuele systeem is blijkbaar niet erg geschikt enkel grillige randen te vergelijken en aan elkaar te zetten. Het enige alternatief lijkt om lokaler te zoeken en elk fragment te vergelijken met elk ander fragment. Deze aanpak is natuurlijk niet mogelijk, er zijn miljoenen combinaties van fragmenten mogelijk.\\
 
-In deze context situeert zich het \textbf{thera}\footnote{Thera is de oude naam voor het huidige griekse eiland genaamd Santorini, waar het project voor het eerst in de praktijk werd toegepast.} project, dat probeert om het werk van de archeoloog gemakkelijker te maken door middel van een software platform. De
-redenering achter het project is dat wat voor een mens repititief en tijdsabsorberend zou zijn, geautomatiseerd zou kunnen worden m.b.v. een computer. Dergelijk systeem werd in 2007 aan de \emph{Princeton} universiteit in Amerika geconcipieerd. Sindsdien is er door verschillende onderzoekers van over de hele wereld aan gewerkt om alle noodzakelijke delen te ontwerpen, te implementeren en te integreren. [vermeld hoofdonderzoekers]. De werking van het systeem wordt in het 
-volgende hoofdstuk nader toegelicht.\\
+In deze context situeert zich het thera\footnote{Thera is de oude naam voor het huidige griekse eiland genaamd Santorini, waar het project voor het eerst in de praktijk werd toegepast.} project, dat probeert om het werk van de archeoloog gemakkelijker te maken door middel van een software platform~\cite{Brown2008}. De
+redenering achter het project is dat een computer de ondankbare taak voorgesteld in de vorige paragraaf kan automatiseren. Dergelijk systeem werd in 2007 aan de \emph{Princeton} universiteit in Amerika geconcipieerd. Sindsdien is er tot op de dag van vandaag door verschillende onderzoekers van over de hele wereld aan gewerkt. De werking van het systeem wordt in het volgende hoofdstuk nader toegelicht.\\
 
-Deze thesis draait rond het maken van een uitbreiding op \'{e}\'{e}n van deze delen. De uitbreiding moet de gebruikers van het systeem in staat stellen om de beschikbare data op nieuwe manieren te gebruiken, te visualiseren, aan te passen en te delen met medeonderzoekers.\\
+Deze thesis draait rond het maken van een uitbreiding op het platform. De uitbreiding moet de gebruikers van het systeem in staat stellen om de beschikbare data op nieuwe manieren te gebruiken, te visualiseren, aan te passen en te delen met medeonderzoekers. Aangaande terminologie zullen een paar woorden veelvuldig terugkomen: de termen fragment, brokstuk of gewoonweg stuk verwijzen altijd naar een enkel gebroken deel van het originele fresco. De termen fragmentpaar, paar en voorstel zijn gereserveerd voor een aaneenkoppeling van twee fragmenten op een bepaalde plaats. Het valt te benadrukken dat twee fragmenten met elkaar verschillende paren kunnen vormen, indien zij op verschillende punten raken (ook al liggen die punten niet zo ver uit elkeaar). Om deze reden wordt een paar ook vaak een voorstel genoemd, om te benadrukken dat het een mogelijke configuratie is, maar geen zekere. Verder verwijst deze tekst meermaals naar (automatische) herkenners, dit zijn de identificatiealgoritmen die twee fragmenten aan elkaar proberen passen.\\
 
-// TODO: vorige stuk gaat niet zozeer over samenwerking meer, herschrijf dit
-mss? De gangbare methode van manueel puzzelen van v\'o\'or het thera project leende
-zich wel tot een zekere vorm van samenwerking, op voorwaarde dat men op dezelfde
-site aanwezig was. Verder moest alle betreffende informatie van commentaren tot
-classificaties in een centrale plek bewaard worden zodat iedereen erbij kon. Dit ging van memobriefjes op de fragmenten zelf tot manueel
-aangepaste elektronische documenten. Dankzij het thera systeem kon
-deze manier van werken veranderd worden, alle relevante kennis kan elektronisch
-opgeslagen worden. Er was echter tot op heden nog geen gemakkelijke
-manier om deze kennis met andere archeologen te delen en al zeker niet om de bevindingen van verschillende onderzoekers te combineren. 
-Dat is het kernprobleem dat deze thesis zal proberen uit de wereld te helpen.
-Kortom: de nodige aanpassingen en nieuwe implementaties zullen gedaan worden om het oude systeem collaboratief te maken, zodat het beheren, delen en combineren van data gemakkelijk en intuitief wordt.\\
+\section{Overzicht}
+Hoofdstuk~\ref{hoofdstuk:overzicht} geeft een overzicht van het bestaande werk en hoofdstuk~\ref{hoofdstuk:doelen} geeft aan op welke vlakken het project zal uitgebreid worden en waarom. Vervolgens behandelt hoofdstuk~\ref{hoofdstuk:ontwerp} het algemene ontwerp van de applicatie. Hoofdstukken~\ref{hoofdstuk:database},~\ref{hoofdstuk:synchronisatie} en~\ref{hoofdstuk:modules} gaan dieper in op enkele specifieke implementaties van het project zoals de database, de synchronisatie en de modules. Tenslotte volgt een besluit in hoofdstuk~\ref{hoofdstuk:besluit}.

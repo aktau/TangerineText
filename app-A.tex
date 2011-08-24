@@ -1,6 +1,5 @@
 \chapter{Extra afbeeldingen \& schema's}
 \label{app:A}
-
 \section{Omzetting SQL naar NoSQL}
 \begin{center}
 \hvFloat[
@@ -10,13 +9,15 @@ capWidth=1,%
 capPos=b,%
 rotAngle=0,%
 objectPos=c%
-]{figure}{\includegraphics[width=0.7\textheight]{images/SQL-to-MongoDB.pdf}}{Sommige NoSQL systemen --- zoals MongoDB --- beschikken zoals te zien valt in deze afbeelding over dezelfde analytische kracht als een SQL database. De performantiekarakteristieken zijn echter verschillend. Afbeelding gebruikt met toestemming~\cite{sqlnosql}}{fig:sqlmongo}
+]{figure}{\includegraphics[width=0.6\textheight]{images/SQL-to-MongoDB.pdf}}{Sommige NoSQL systemen --- zoals MongoDB --- beschikken zoals te zien valt in deze afbeelding over dezelfde analytische kracht als een SQL database. De performantiekarakteristieken zijn echter verschillend. Afbeelding gebruikt met toestemming~\cite{sqlnosql}}{fig:sqlmongo}
 \end{center}
+%\clearpage
+\pagebreak
 
 %\includegraphics[width=0.8\textheight]{images/SQL-to-MongoDB.pdf}
 %\includepdf{images/SQL-to-MongoDB.pdf}
 
-\section{Componenten}
+\section{Overzicht van de applicatie}
 \hvFloat[
 %floatPos=h,
 nonFloat=true,
@@ -25,6 +26,14 @@ capPos=b,%
 rotAngle=90,%
 objectPos=c%
 ]{figure}{\includegraphics[width=0.95\textheight]{images/Bigtang.png}}{Een ruw overzicht van de componenten in het project en hoe het interageert met het reeds bestaande systeem.}{fig:tangbig}
-
-
 \clearpage
+
+\section{Detail van de synchronisatiestructuur}
+\hvFloat[
+%floatPos=h,
+nonFloat=true,
+capWidth=1,%
+capPos=b,%
+rotAngle=0,%
+objectPos=c%
+]{figure}{\includegraphics[width=\textwidth]{images/Overview-merging.png}}{Het synchronisatie-subsysteem, de componenten die overeenkomen met de stappen zijn aangeduid.}{fig:merging-overview}

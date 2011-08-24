@@ -1,13 +1,13 @@
 \documentclass[master=cws]{kulemt}
-\setup{title={Een collaboratief platform voor het effici\"{e}nt reconstrueren van fresco's},
+\setup{title={Een uitbreidbaar platform voor het effici\"{e}nt reconstrueren van fresco's},
   author={Nicolas Hillegeer},
   promotor={Prof.\,dr.\,ir.\ P. Dutr\'{e}},
-  assessor={Ir.\,N/A\and N/A},
-  assistant={Dr. ir.\ B.J.~Brown}}
+  assessor={Prof.\,dr.\ D. De Schreye\and Dr.\ A.~Lagae},
+  assistant={Dr.\ B.J.~Brown}}
 
 % De volgende \setup mag verwijderd worden als geen fiche gewenst is.
 \setup{filingcard,
-  translatedtitle={Een collaboratief platform voor het effici\"{e}nt reconstrueren van fresco's},
+  translatedtitle={Een uitbreidbaar platform voor het effici\"{e}nt reconstrueren van fresco's},
   udc=621.3,
   shortabstract={Hier komt een heel bondig abstract van hooguit 500
     woorden. \LaTeX\ commando's mogen hier gebruikt worden. Blanco lijnen
@@ -24,12 +24,12 @@
 \usepackage[dutch]{babel}
 \usepackage[pdfusetitle,colorlinks,plainpages=false,urlcolor=blue]{hyperref}
 \usepackage{pdfsync}
-\usepackage[final]{pdfpages}
+%\usepackage[final]{pdfpages}
+\usepackage[draft]{pdfpages}
+\usepackage{amsmath}
 \usepackage{graphicx}
-%\setkeys{Gin}{draft} % force draftmode
+\setkeys{Gin}{draft} % force draftmode
 \usepackage{subfig}
-%\usepackage{rotating}
-%\usepackage{rotfloat}
 \usepackage{hvfloat}
 \setlength{\parindent}{0in}
 
@@ -70,7 +70,8 @@
  \lstloadlanguages{
          %[Visual]Basic
          %Pascal
-         %C
+         %C,
+         SQL,
          C++,
          XML,
          HTML
@@ -118,15 +119,27 @@
 \begin{document}
 
 \begin{preface}
-  Dit is mijn dankwoord om iedereen te danken die mij bezig gehouden heeft.
-  Hierbij dank ik mijn promotor, mijn begeleider en de voltallige jury.
-  Ook mijn familie heeft mij erg gesteund natuurlijk.
+	Allereerst wil ik mijn promotor Prof. dr. ir. Philip Dutr\'e en begeleider Dr. ir. Benedict Brown bedanken om mij de kans te geven dit interessante project te doen. Dank ook aan Dr. Ares Lagae en Prof. dr. Danny De Schreye voor hun interesse in dit werk en de tijd te nemen die nodig is om het aandachtig te doorlezen.\\
+	
+	Het zou een doodzonde zijn om niet te benadrukken wat een goede begeleider Benedict is geweest, hij was er altijd als ik hem nodig had om mij te voorzien van nieuwe invalshoeken en manieren van werken. Zonder zijn diepe kennis van het grotere project waarin deze thesis zich bevindt zou deze al bij voorbaat mislukt zijn. Hij bleef altijd vriendelijk ook al deed ik eigenzinnig of lostte ik de verwachtingen niet in. Benedict is een steengoede onderzoeker en een nog beter mens. Als deze thesis niet aan de hoge standaarden van de K.U.Leuven voldoet, kan ik met een gerust hart zeggen dat het niet aan hem zal gelegen hebben.\\
+	
+	Dit project vergde veel inspanningen, niet alleen van mezelf, maar ook van anderen. Ik wil dan ook graag mijn ouders, vrienden en kennissen bedanken voor hun niet aflatende steun en inzet. Ook de bijdrage van de K.U.Leuven kan niet onderschat worden, de meer dan bekwame docenten hebben mijn passie voor het vak niet weten te doven maar integendeel aan te wakkeren.\\
+	
+	Als laatste maar zeker niet als minste wil ik mijn grote dankbaarheid aan mijn vriendin Barbara onderstrepen. Zij heeft het niet alleen uitgehouden om mij zeer weinig te zien de laatste maanden maar had ook nog eens het geduld om mijn werk te controleren op de fouten die ik blijkbaar zo graag maak. Het is geen gemakkelijke periode geweest en ik weet niet hoe ik het ooit zal kunnen terugbetalen, maar ik ben blij dat er iets voor te tonen valt.
 \end{preface}
 
 \tableofcontents*
 
 \begin{abstract}
-  Deze \texttt{abstract} moet nog geschreven worden.
+	Het reconstrueren van archeologische fresco's is een domein waar computers nuttig werk kunnen verrichten, zowel voor archiveringsdoeleinden als voor digitale reconstructie. De algoritmen voor het automatisch ontdekken van passende fragmenten zijn reeds erg geavanceerd, maar alle resulterende paarvoorstellen moeten nog steeds verwerkt worden. Huidige tools zijn krachtig maar missen integratie, gebruiksvriendelijkheid en uitbreidbaarheid.
+	
+	Dit eindwerk tracht hierin verandering te brengen door het ontwikkelen van een platform dat doorgedreven analyse en manipulatie van voorstellen toelaat.
+
+	Het resultaat is een applicatie die toelaat om verschillende personen vanop een afstand aan eenzelfde collectie te laten werken. Netwerktoegankelijk databeheer zorgt ervoor dat de meest actuele informatie steeds beschikbaar is en synchronisatie dat er geen waardevolle vondsten verloren gaan.
+	
+	Tegenover het vroegere systeem is de sterk uitgebreide analysecapabiliteit ook nuttig. Complexe vragen over de collectie kunnen hiermee gesteld worden.
+	
+	Als laatste is het mogelijk om snel modules te maken die nieuwe visualisaties toelaten en ze eenvoudig aan te koppelen op het datasysteem. Enkele voorbeelden werden reeds gemaakt voor dit eindwerk.
 \end{abstract}
 
 %http://people.cs.kuleuven.be/~ronald.cools/MasterProef/titelbladFirW.html
@@ -145,6 +158,17 @@
 % Bij een beperkt aantal figuren en tabellen gebruik je liever het volgende:
 \listoffiguresandtables
 
+% \chapter{Lijst van termen}
+% %\section*{Termen}
+% \begin{flushleft}
+%   %\renewcommand{\arraystretch}{1.1}
+%   \begin{tabularx}{\textwidth}{l|r}
+%   	RDBMS & Relational Database Management System / Relationeel databasebeheersysteem \\
+%   	SQL & Structured Query Language / Gestructureerde querytaal, wordt ook gebruikt om te refereren naar databases die verzoeken in deze taal accepteren \\
+%   	NoSQL & Gebruikt voor een klasse van databases die niet gebaseerd zijn op de relationele calculus en een zich concentreren op gedistribueerde data. De term is niet zo accuraat maar het is de meest populaire om deze databses onder te groeperen
+%   \end{tabularx}
+% \end{flushleft}
+
 % Nu begint de eigenlijke tekst
 \mainmatter
 
@@ -155,7 +179,6 @@
 \include{database}
 \include{synchronisatie}
 \include{modules}
-%\include{tests}
 \include{toekomst}
 \include{besluit}
 
@@ -163,6 +186,7 @@
 \appendixpage*  
 \appendix
 \include{app-A}
+\include{app-poster}
 
 \backmatter
 %\bibliographystyle{abbrv}
