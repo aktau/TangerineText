@@ -232,51 +232,53 @@ Normaalgezien zou de queryplanner van de database deze optimalisatie zelf moeten
 \subsubsection{Experimenteel: materialized views}
 Een spijtig nadeel van de kracht van meta-attributen is dat ze queries sterk vertragen. Hun dynamische aard zorgt ervoor dat de achterliggende query steeds wordt uitgevoerd voor elk verzoek. Een rij ophalen van ``aantal\_duplicaten'' impliceert op die manier een volledige scan de ``duplicaat'' tabel. Vele oplossingen voor dit probleem werden getest maar geen enkele bracht de nodige verbetering of waren slechts van toepassing op een beperkte subset van de mogelijke verzoeken. Het enige wat overbleef was doen wat meta-attributen net proberen te vermijden: een echte tabel maken van de view. Natuurlijk moest dit gebeuren zonder de nadelen van een echte tabel die niet gedesynchroniseerd kan geraken met de originele tabellen.\\
 
-Het concept op zich heet een gematerialiseerde view. De opzet is om een automatische verbinding te maken tussen de moedertabellen en het meta-attribuut, zodat elke update gepropageerd wordt. Dit is een simpel uitgangspunt, maar heeft een verassend moeilijke uitwerking. De huidige implementatie is zeer rudimentair en werkt alleen in PostgreSQL, de implementatie met de meest geavanceerde programmeermogelijkheden. De resultaten zijn echter veelbelovend, zie sectie~\ref{sec:benchmarks}.
+Het concept op zich heet een gematerialiseerde view. De opzet is om een automatische verbinding te maken tussen de moedertabellen en het meta-attribuut, zodat elke update gepropageerd wordt. Dit is een simpel uitgangspunt, maar heeft een verassend moeilijke uitwerking. De huidige implementatie is zeer rudimentair en werkt alleen in PostgreSQL, de implementatie met de meest geavanceerde programmeermogelijkheden. De resultaten zijn echter veelbelovend.
 
 \subsection{Collaboratie}
 De verschillende optimalisaties uit de vorige secties maken het mogelijk om een externe database te gebruiken en toch met grote snelheid te navigeren in de dataset. Dit betekent dat iedereen steeds de meest actuele data te zien krijgt. In deze opstelling is synchronisatie niet nodig, zolang er een netwerk- of internetverbinding beschikbaar is. Als meerdere gebruikers tegelijkertijd met dezelfde paren aan het werken zijn, zullen ze elkaars veranderingen niet zien verschijnen tot ze het venster vernieuwen. Voor deze situatie is een oplossing gemaakt die gebruikmaakt van het feit dat de meeste queries snel afgehandeld worden. Als het model merkt dat het ophalen van een venster snel gaat, zal het periodisch proberen dit venster te vernieuwen. De periode past zich aan de omstandigheden aan, hoe langer het duurt om een venster op te vragen, hoe langer het model zal wachten. Dit is zo omdat de reden voor de traagheid misschien een overbelasting van de database is.\footnote{Ge\"inspireerd door het dynamisch gedrag van het TCP pakketprotocol}\\
 
 Dankzij dit systeem verschijnen de laatste nieuwe veranderingen steeds op het scherm van de gebruiker, zodat geen dubbel werk wordt verricht.
 
-\section{Data mining}
-Maak ketting van (yes+maybe) ---> zoek naar alle buren binnen 1 hop (algoritme is geschreven) --- FINDNEIGHBOURS.SQL
+% \section{Data mining}
+% De mogelijkheden voor data mining liggen nu volledig open, een voorbeeld is de constructie van een subgraaf van de graaf die de volledige collectie voorstelt. Deze bestaat uit alle 
+% 
+% Eerder werd reeds vermeld a
+% Maak ketting van (yes+maybe) ---> zoek naar alle buren binnen 1 hop (algoritme is geschreven) --- FINDNEIGHBOURS.SQL
+% 
+% Meer mogelijkheden: geef alle paren die recent zijn aangepast.
 
-Meer mogelijkheden: geef alle paren die recent zijn aangepast.
-
-
-\section{Benchmarks}
-\label{sec:benchmarks}
-Er zijn reeds een paar namen gevallen van gebruikte database implementaties: SQLite, MySQL en PostgreSQL. In het begin draaide 
-Dankzij de flexibiliteit die nodig was om zowel SQLite als MySQL het grootst mogelijke deel van de code te laten delen
-
-\subsection{Indexering}
-Analyse van datatoegangspatroon: vooral SELECT, ORDER BY, GROUP BY ---->
-veelvuldig gebruik van indexes
-
-optimize voor fast reads -----> inserts kunnen lokaal gedaan worden, updates hopelijk niet zo veel of lokaal
-
-
-\subsection{Opstelling}
-Beide databases kregen 512 MB RAM aan werkgeheugen toe. Het is natuurlijk niet mogelijk om exact dezelfde configuratie te krijgen omdat de opties verschillen.
-
-De query cache staat af
-Om de variabiliteit van de filesystem (nederlands) cache een beetje buiten spel te zetten zijn al deze routines ``opgewarmd''
-
-Pagination
-Late row lookup
-
-Ideaal = minder dan een seconden voor elke gegeven query vanuit een gebruikersinteractie standpunt (System Response Time and User Satisfaction pagina 5)
-
-Effect van DB configuratie (veel geheugen\ldots)
-
-Suggested workaround voor het text probleem -> sphinx, restrict fragment names (niet ZO gemakkelijk), string + nummer
-Suggested workaround voor het indexing probleem (zoals gezien voor status IN (\ldots)) -> force een index?! dunno\ldots hij pakt in ieder geval de verkeerde!
-
-'High Performance MySQL', Second Edition, O'REILLY, ISBN: 978-0-596-10171-8
-MySQL Reference Manual for version 5.1
-
-http://nlp.stanford.edu/IR-book/html/htmledition/permuterm-indexes-1.html (dit is hoe wildspeed werkt) (LIKE performance lijkt niet zo slecht in Postgres, het is de sorting eerder\ldots)
-http://www.slideshare.net/techdude/how-to-kill-mysql-performance
-http://stackoverflow.com/questions/1540590/how-to-speed-up-like-operation-in-sql-postgres-preferably <--- use trigrams (fail), MAAR BETER IN 9.1 (future research)
-https://cgsrv1.arrc.csiro.au/blog/2010/06/23/materializedindexed-views-for-postgresql/
+% \section{Benchmarks}
+% \label{sec:benchmarks}
+% Er zijn reeds een paar namen gevallen van gebruikte database implementaties: SQLite, MySQL en PostgreSQL. In het begin draaide 
+% Dankzij de flexibiliteit die nodig was om zowel SQLite als MySQL het grootst mogelijke deel van de code te laten delen
+% 
+% \subsection{Indexering}
+% Analyse van datatoegangspatroon: vooral SELECT, ORDER BY, GROUP BY ---->
+% veelvuldig gebruik van indexes
+% 
+% optimize voor fast reads -----> inserts kunnen lokaal gedaan worden, updates hopelijk niet zo veel of lokaal
+% 
+% 
+% \subsection{Opstelling}
+% Beide databases kregen 512 MB RAM aan werkgeheugen toe. Het is natuurlijk niet mogelijk om exact dezelfde configuratie te krijgen omdat de opties verschillen.
+% 
+% De query cache staat af
+% Om de variabiliteit van de filesystem (nederlands) cache een beetje buiten spel te zetten zijn al deze routines ``opgewarmd''
+% 
+% Pagination
+% Late row lookup
+% 
+% Ideaal = minder dan een seconden voor elke gegeven query vanuit een gebruikersinteractie standpunt (System Response Time and User Satisfaction pagina 5)
+% 
+% Effect van DB configuratie (veel geheugen\ldots)
+% 
+% Suggested workaround voor het text probleem -> sphinx, restrict fragment names (niet ZO gemakkelijk), string + nummer
+% Suggested workaround voor het indexing probleem (zoals gezien voor status IN (\ldots)) -> force een index?! dunno\ldots hij pakt in ieder geval de verkeerde!
+% 
+% 'High Performance MySQL', Second Edition, O'REILLY, ISBN: 978-0-596-10171-8
+% MySQL Reference Manual for version 5.1
+% 
+% http://nlp.stanford.edu/IR-book/html/htmledition/permuterm-indexes-1.html (dit is hoe wildspeed werkt) (LIKE performance lijkt niet zo slecht in Postgres, het is de sorting eerder\ldots)
+% http://www.slideshare.net/techdude/how-to-kill-mysql-performance
+% http://stackoverflow.com/questions/1540590/how-to-speed-up-like-operation-in-sql-postgres-preferably <--- use trigrams (fail), MAAR BETER IN 9.1 (future research)
+% https://cgsrv1.arrc.csiro.au/blog/2010/06/23/materializedindexed-views-for-postgresql/

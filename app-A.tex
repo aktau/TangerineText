@@ -1,4 +1,4 @@
-\chapter{Extra afbeeldingen \& schema's}
+\chapter{Extra afbeeldingen, schema's \& code}
 \label{app:A}
 \section{Omzetting SQL naar NoSQL}
 \begin{center}
@@ -9,7 +9,7 @@ capWidth=1,%
 capPos=b,%
 rotAngle=0,%
 objectPos=c%
-]{figure}{\includegraphics[width=0.6\textheight]{images/SQL-to-MongoDB.pdf}}{Sommige NoSQL systemen --- zoals MongoDB --- beschikken zoals te zien valt in deze afbeelding over dezelfde analytische kracht als een SQL database. De performantiekarakteristieken zijn echter verschillend. Afbeelding gebruikt met toestemming~\cite{sqlnosql}}{fig:sqlmongo}
+]{figure}{\includegraphics[width=0.6\textheight]{images/SQL-to-MongoDB.pdf}}{Sommige NoSQL systemen --- zoals MongoDB --- beschikken over dezelfde analytische kracht als een SQL database. De performantiekarakteristieken zijn echter verschillend. Afbeelding gebruikt met toestemming~\cite{sqlnosql}}{fig:sqlmongo}
 \end{center}
 %\clearpage
 \pagebreak
@@ -37,3 +37,7 @@ capPos=b,%
 rotAngle=0,%
 objectPos=c%
 ]{figure}{\includegraphics[width=\textwidth]{images/Overview-merging.png}}{Het synchronisatie-subsysteem, de componenten die overeenkomen met de stappen zijn aangeduid.}{fig:merging-overview}
+
+\section{Graafqueries in SQL}
+
+\lstinputlisting[label=code:sqlneigh,caption=SQL declaraties om een subgraaf van de collectie met bepaalde eigenschappen te extraheren, language=SQL]{source/findneighbours.sql}

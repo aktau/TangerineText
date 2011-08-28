@@ -7,14 +7,12 @@
 
 % De volgende \setup mag verwijderd worden als geen fiche gewenst is.
 \setup{filingcard,
-  translatedtitle={Een uitbreidbaar platform voor het effici\"{e}nt reconstrueren van fresco's},
+  translatedtitle={An extendible platform for the efficient reconstruction of frescoes},
   udc=621.3,
-  shortabstract={Hier komt een heel bondig abstract van hooguit 500
-    woorden. \LaTeX\ commando's mogen hier gebruikt worden. Blanco lijnen
-    (of het commando \texttt{\string\pa r}) zijn wel niet toegelaten!}}
+  shortabstract={Het reconstrueren van archeologische fresco's is een domein waar computers nuttig werk kunnen verrichten, zowel voor archiveringsdoeleinden als voor digitale reconstructie. De algoritmen voor het automatisch ontdekken van passende fragmenten zijn reeds erg geavanceerd, evenwel moeten alle resulterende paarvoorstellen nog steeds verwerkt worden. Huidige tools zijn krachtig maar missen integratie, gebruiksvriendelijkheid en uitbreidbaarheid. Dit eindwerk tracht hierin verandering te brengen door het ontwikkelen van een platform dat doorgedreven analyse en manipulatie van voorstellen toelaat. Het resultaat is een applicatie die toelaat om verschillende personen vanop een afstand aan eenzelfde collectie te laten werken. Netwerktoegankelijke data zorgt ervoor dat de meest actuele informatie steeds beschikbaar is, terwijl de synchronisatie erover waakt dat er geen waardevolle vondsten verloren gaan. Tegenover het vroegere systeem is de sterk uitgebreide analysecapabiliteit ook nuttig, aangezien er hiermee complexe vragen over de collectie kunnen gesteld worden. Als laatste is het mogelijk om snel modules te maken die nieuwe visualisaties toelaten en deze eenvoudig aan te koppelen op het datasysteem. Enkele voorbeelden werden reeds gemaakt voor dit eindwerk.}}
 
 
-%\setup{coverpageonly}
+\setup{coverpageonly}
 %\setup{frontpagesonly}
 
 % Kies de fonts voor de gewone tekst, bv. Latin Modern
@@ -22,13 +20,14 @@
 
 % Hier kun je dan nog andere pakketten laden of eigen definities voorzien
 \usepackage[dutch]{babel}
-\usepackage[pdfusetitle,colorlinks,plainpages=false,urlcolor=blue]{hyperref}
+\usepackage{url}
+%\usepackage[pdfusetitle,colorlinks,plainpages=false,urlcolor=blue]{hyperref}
 \usepackage{pdfsync}
-%\usepackage[final]{pdfpages}
-\usepackage[draft]{pdfpages}
+\usepackage[final]{pdfpages}
+%\usepackage[draft]{pdfpages}
 \usepackage{amsmath}
 \usepackage{graphicx}
-\setkeys{Gin}{draft} % force draftmode
+%\setkeys{Gin}{draft} % force draftmode
 \usepackage{subfig}
 \usepackage{hvfloat}
 \setlength{\parindent}{0in}
@@ -133,8 +132,6 @@
 	Het zou een doodzonde zijn om niet te benadrukken wat een goede begeleider Benedict is geweest, hij was er altijd als ik hem nodig had om mij te voorzien van nieuwe invalshoeken en manieren van werken. Zijn diepe kennis van het grotere project waarin deze thesis zich bevindt is van een onontbeerlijke waarde geweest.\\
 	
 	Dit project vergde veel inspanningen, niet alleen van mezelf, maar ook van anderen. Ik wil dan ook graag mijn ouders, vriendin, vrienden en kennissen bedanken voor hun niet aflatende steun en inzet. Ook de bijdrage van de K.U.Leuven kan niet onderschat worden. De meer dan bekwame docenten hebben mijn interesse in het vak enkel doen toenemen.\\
-	
-	
 \end{preface}
 
 \tableofcontents*
@@ -188,8 +185,8 @@
 \include{database}
 \include{synchronisatie}
 \include{modules}
-\include{toekomst}
 \include{besluit}
+\include{toekomst}
 
 % Indien er bijlagen zijn:
 \appendixpage*  
